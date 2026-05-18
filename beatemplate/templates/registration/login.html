@@ -1,0 +1,24 @@
+
+{% extends "beatemplate/base.html" %} 
+
+{% block title %}Iniciar Sesión{% endblock %}
+
+{% block content %}
+    <h1>Iniciar Sesión</h1>
+
+    {% if form.errors %}
+        <p>Los datos introducidos no coinciden. Inténtalo de nuevo.</p>
+
+    {% else %}
+        <p>Por favor, utiliza el siguiente formulario para acceder:</p>
+    {% endif %}
+
+    <div class="login-form">
+        <form method="post">
+            {{ form.as_p }}
+            {% csrf_token %}
+            <input type="hidden" name="next" value="{{ next }}" />
+            <p><input type="submit" value="Iniciar Sesión"></p>
+        </form>
+    </div>
+{% endblock %}
