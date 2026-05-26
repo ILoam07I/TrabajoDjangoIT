@@ -1,0 +1,16 @@
+
+{% extends "beatemplate/base.html" %}
+
+{% block title %}Create a New Account{% endblock %}
+
+{% block content %}
+    <h1>Crea una Nueva Cuenta en Beatemplate</h1>
+
+    <p>Por favor, regístrate usando el siguiente formulario:</p>
+
+    <form method="post">
+        {{ form_registro.as_p }}
+        {% csrf_token %}
+        <p><input type="submit" value="Crear mi cuenta"></p>
+    </form>
+{% endblock %}

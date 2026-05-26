@@ -1,0 +1,45 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>{% block title %}{% endblock %}</title>
+</head>
+
+<body>
+    <nav id="sidebar">
+        <div class="usuario-nav">
+            {% if request.user.is_authenticated %}
+                <p>Bienvenido, {{ request.user.username }}.</p>
+
+                <form action="{% url 'beatemplate:logout' %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit">Cerrar Sesión</button>
+                </form>
+
+            {% else %}
+                <p><a href="{% url 'beatemplate:login' %}">Iniciar Sesión</a></p>
+            {% endif %}
+
+            <a href="{% url 'beatemplate:feed' %}">Feed</a>
+
+            <div>
+                <form action="{% url 'beatemplate:search' %}" method="get">
+                    <input type="text" name="q" placeholder="Buscar...">
+                    <button type="submit">Buscar</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <div id="content">
+        {% block content %}
+        {% endblock %}
+    </div>
+</body>
+
+<footer>
+    <hr>
+</footer>
+
+</html

@@ -1,0 +1,175 @@
+
+{% extends 'beatemplate/base.html' %}
+
+{% block title %}Results{% endblock %}
+
+{% block content %}
+    {% if query %}
+        <header>
+            <h1>Resultados de Búsqueda</h1>
+            <h3>Resultados para "{{ query }}", {{ total }} resultados totales:</h3>
+        </header>
+
+        {% if songs %}
+            <hr>
+
+            <div>
+                <h1>
+                    {% with songs.count as total %}
+                    {% if total == 1 %}
+                        Encontrada 1 canción:
+
+                    {% else %}
+                        Encontradas {{ total }} canciones:
+                    {% endif %}
+                    {% endwith %}
+                </h1>
+                
+                {% for song in songs %}
+                    <div>
+                        <h4>
+                            <a href="{% url 'beatemplate:detailed_song' song.id song.song_slug %}">
+                            {{ song.song_title }}
+                            </a>
+                        </h4>
+
+                        <p>
+                            {% for artist in song.artists.all %}
+                                <a href="{% url 'beatemplate:detailed_artist' artist.id artist.artist_slug %}">
+                                    {{ artist.artist_name }}
+                                </a>
+                                {% if not forloop.last %}, {% endif %}
+                            {% endfor %}
+                        </p>
+
+                        <p>
+                            {% for tag in song.tags.all %}
+                                <a href="{% url 'beatemplate:tag_search' tag.slug %}">
+                                    {{ tag.name }}
+                                </a>
+                                {% if not forloop.last %}, {% endif %}
+                            {% endfor %}
+                        </p>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        {% if releases %}
+            <hr>
+
+            <div>
+                <h1>
+                    {% with releases.count as total %}
+                    {% if total == 1 %}
+                        {% if tag %}
+                            Encontrado 1 álbum:
+
+                        {% else %}
+                            Encontrado 1 lanzamiento:
+                        {% endif %}
+
+                    {% else %}
+                        {% if tag %}
+                            Encontrados {{ total }} álbumes:
+                        
+                        {% else %}
+                            Encontrados {{ total }} lanzamientos:
+                        {% endif %}
+                    {% endif %}
+                    {% endwith %}
+                </h1>
+                
+                {% for release in releases %}
+                    <div>
+                        <h4>
+                            <a href="{% url 'beatemplate:detailed_release' release.id release.release_slug %}">
+                            {{ release.release_title }}
+                            </a>
+                        </h4>
+
+                        <p>
+                            {% for artist in release.artists.all %}
+                                <a href="{% url 'beatemplate:detailed_artist' artist.id artist.artist_slug %}">
+                                    {{ artist.artist_name }}
+                                </a>
+                                {% if not forloop.last %}, {% endif %}
+                            {% endfor %}
+                        </p>
+
+                        <p>
+                            {% for tag in release.get_tags %}
+                                <a href="{% url 'beatemplate:tag_search' tag.slug %}">
+                                    {{ tag.name }}
+                                </a>
+                                {% if not forloop.last %}, {% endif %}
+                            {% endfor %}
+                        </p>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        {% if playlists %}
+            <hr>
+
+            <div>
+                <h1>
+                    {% with playlists.count as total %}
+                    {% if total == 1 %}
+                        Encontrada 1 playlist:
+
+                    {% else %}
+                        Encontradas {{ total }} playlists:
+                    {% endif %}
+                    {% endwith %}
+                </h1>
+                
+                {% for playlist in playlists %}
+                    <div>
+                        <h4>
+                            <a href="{% url 'beatemplate:detailed_playlist' playlist.id playlist.playlist_slug %}">
+                            {{ playlist.playlist_title }}
+                            </a>
+                        </h4>
+
+                        <p>{{ playlist.user.username }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        {% if artists %}
+            <hr>
+
+            <div>
+                <h1>
+                    {% with artists.count as total %}
+                    {% if total == 1 %}
+                        Encontrado 1 artista:
+
+                    {% else %}
+                        Encontrados {{ total }} artistas:
+                    {% endif %}
+                    {% endwith %}
+                </h1>
+                
+                {% for artist in artists %}
+                    <div>
+                        <h4>
+                            <a href="{% url 'beatemplate:detailed_artist' artist.id artist.artist_slug %}">
+                            {{ artist.artist_name }}
+                            </a>
+                        </h4>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    
+    {% else %}
+        <header>
+            <h1>¡Ups, la búsqueda estaba vacía!</h1>
+            <h3>Introduce algo para buscar</h3>
+        </header>
+    {% endif %}
+{% endblock %}
