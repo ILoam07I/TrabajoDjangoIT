@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Artist, Release, Playlist, Song, ReleaseSong, PlaylistSong
+from .models import Artist, Release, Playlist, Song, ReleaseSong
 
 class ReleaseSongInline(admin.TabularInline):
     model = ReleaseSong
@@ -8,12 +8,6 @@ class ReleaseSongInline(admin.TabularInline):
     autocomplete_fields = ['song']
     extra = 1
     min_num = 1
-
-class PlaylistSongInline(admin.TabularInline):
-    model = PlaylistSong
-    fields = ['song', 'position_at']
-    autocomplete_fields = ['song']
-    extra = 1
 
 @admin.register(Artist)
 class ArtistAdmin(admin.ModelAdmin):
@@ -46,7 +40,6 @@ class ReleaseAdmin(admin.ModelAdmin):
 
 @admin.register(Playlist)
 class PlaylistAdmin(admin.ModelAdmin):
-    inlines = [PlaylistSongInline]
     list_display = ['playlist_title', 'playlist_slug', 'playlist_description']
     list_filter = ['playlist_title']
     autocomplete_fields = ['songs']

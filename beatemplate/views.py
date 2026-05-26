@@ -1,12 +1,22 @@
 
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.http import require_POST
 from django.contrib.auth import login
 from django.db.models import Q
 from taggit.models import Tag
+from django_tomselect.autocompletes import AutocompleteModelView
 
 from .models import Artist, Release, Playlist, Song
 from .forms import RegisterForm, CreatePlaylistForm
+
+class SongAutocompleteView(AutocompleteModelView):
+    model = Song
+    search_lookups = ['song_title__icontains',
+                      'artists__artist_name__icontains',
+                      'tags__name__icontains']
+    ordering = ['song_title']
+    page_size = 20
 
 def home(request):
     return render(request, 'beatemplate/home.html')
@@ -16,7 +26,7 @@ def register(request):
         register_form = RegisterForm(request.POST)
 
         if register_form.is_valid():
-            new_account = register_form.save(commit=False)
+            new_account = register_form.save( commit = False )
             new_account.set_password(register_form.cleaned_data['password'])
             new_account.save()
             login(request, new_account)
@@ -69,7 +79,7 @@ def search(request):
 
     if query:
         total = 0
-        tag = Tag.objects.filter(slug = query).first()
+        tag = Tag.objects.filter(slug = query.lower()).first()
 
         if tag:
             return redirect('beatemplate:tag_search', slug = tag.slug)
@@ -97,7 +107,7 @@ def search(request):
 def tag_search(request, slug):
     total = 0
     tag = get_object_or_404(Tag, slug = slug)
-
+    
     songs = Song.objects.filter(tags__in = [tag]).distinct()
     total += songs.count()
 
@@ -111,7 +121,14 @@ def tag_search(request, slug):
                                                                'total': total,
                                                                'tag': tag})
 
-
 @login_required
-def create_playlist(request):
-    pass
+def new_playlist(request):
+    form = CreatePlaylistForm( data = request.POST )
+    playlist = None
+
+    if form.is_valid():
+        playlist = form.save( commit = False )
+        playlist.user = request.user
+        playlist.save()
+
+    return render(request, 'beatemplate/beats/new_playlist.html', {'form': form})
