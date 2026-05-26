@@ -109,7 +109,7 @@ class Song(models.Model):
         return reverse( 'beatemplate:detailed_song', args=[self.id, self.song_slug] )
 
     def __str__(self):
-        return self.song_title
+        return f"{self.song_title} - {self.list_artists()}"
 
 
 class ReleaseSong(models.Model):
@@ -151,24 +151,3 @@ class Playlist(models.Model):
 
     def __str__(self):
         return self.playlist_title
-    
-
-class PlaylistSong(models.Model):
-    playlist = models.ForeignKey(Playlist,
-                                 on_delete = models.CASCADE,
-                                 related_name = 'playlist_songs')
-    
-    song = models.ForeignKey(Song,
-                             on_delete = models.CASCADE,
-                             related_name = 'song_playlists')
-    
-    position_at = models.PositiveIntegerField()
-    added_at = models.DateTimeField( auto_now_add = True )
-
-    class Meta:
-        verbose_name = 'Canción'
-        verbose_name_plural = 'Canciones'
-        ordering = ['position_at']
-        unique_together = ('playlist', 'position_at')
-
-    

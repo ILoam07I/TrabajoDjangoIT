@@ -1,0 +1,23 @@
+
+{% extends 'beatemplate/base.html' %}
+
+{% block title %}New Playlist{% endblock %}
+
+{% block content %}
+    <header>
+        <h1>Crea tu Nueva Playlist</h1>
+    </header>
+
+    <hr>
+
+    {{ form.media }}
+
+    <form method="POST">
+
+        {% csrf_token %}
+
+        {{ form.as_p }}
+
+        <button type="submit">Crear playlist</button>
+    </form>
+{% endblock %}
