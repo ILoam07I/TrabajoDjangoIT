@@ -9,8 +9,11 @@
     <p>Por favor, regístrate usando el siguiente formulario:</p>
 
     <form method="post">
+
         {{ form_registro.as_p }}
+
         {% csrf_token %}
+        
         <p><input type="submit" value="Crear mi cuenta"></p>
     </form>
 {% endblock %}

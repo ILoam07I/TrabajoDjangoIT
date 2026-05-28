@@ -40,9 +40,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_tomselect',
     'taggit',
-    'rest_framework',
-    'rest_framework_simplejwt',
-    'drf_spectacular',
 ]
 
 MIDDLEWARE = [
@@ -132,10 +129,3 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_URL = 'beatemplate:login'
 LOGIN_REDIRECT_URL = 'beatemplate:feed'
 LOGOUT_REDIRECT_URL = 'beatemplate:logout'
-
-REST_FRAMEWORK = {
-    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
-    ),
-}

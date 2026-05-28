@@ -1,14 +1,19 @@
 
+import os
+import requests
+
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
-from django.views.decorators.http import require_POST
 from django.contrib.auth import login
 from django.db.models import Q
 from taggit.models import Tag
 from django_tomselect.autocompletes import AutocompleteModelView
 
 from .models import Artist, Release, Playlist, Song
-from .forms import RegisterForm, CreatePlaylistForm
+from .forms import RegisterForm, CreatePlaylistForm, RatingForm
+
+API_URL = os.getenv('API_URL')
+API_CREDS = {'username': os.getenv('API_USER'), 'password': os.getenv('API_PASSWORD')}
 
 class SongAutocompleteView(AutocompleteModelView):
     model = Song
@@ -60,13 +65,8 @@ def detailed_release(request, id, slug):
     
     return render(request, 'beatemplate/detailed_release.html', {'release' : release})
 
-def detailed_song(request, id, slug):
-    song = get_object_or_404(Release, id = id, song_slug = slug)
-    
-    return render(request, 'beatemplate/detailed_song.html', {'song' : song})
-
 def detailed_playlist(request, id, slug):
-    playlist = get_object_or_404(Release, id = id, playlist_slug = slug)
+    playlist = get_object_or_404(Playlist, id = id, playlist_slug = slug)
     
     return render(request, 'beatemplate/detailed_playlist.html', {'playlist' : playlist})
 
@@ -132,3 +132,41 @@ def new_playlist(request):
         playlist.save()
 
     return render(request, 'beatemplate/beats/new_playlist.html', {'form': form})
+
+
+def obtain_api_token():
+    try:
+        resp = requests.post(f"{API_URL}/token/", data=API_CREDS, timeout=2)
+        
+        if resp.status_code == 200:
+            return resp.json()['access']
+    
+    except requests.RequestException:
+        pass
+
+    return None
+
+@login_required
+def detailed_song(request, id, slug):
+    song = get_object_or_404(Song, id = id, song_slug = slug)
+
+    if request.method == 'POST':
+        rating_form = RatingForm(request.POST)
+
+        if rating_form.is_valid():
+            payload = {'song': song.id,
+                       'user': request.user.id,
+                       'score': rating_form.cleaned_data['score']}
+            
+            response = requests.post('http://127.0.0.1:8001/api/ratings/', json = payload)
+            
+            if response.status_code == 201:
+                return redirect(song.get_absolute_url())
+            
+            else:
+                print(response.json())
+    
+    else:
+        rating_form = RatingForm()
+
+    return render(request, 'beatemplate/beats/detailed_song.html', {'song': song, 'rating_form': rating_form})
