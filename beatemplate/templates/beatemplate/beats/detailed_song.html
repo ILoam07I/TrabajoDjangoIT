@@ -1,0 +1,27 @@
+
+{% extends 'beatemplate/base.html' %}
+
+{% block title %}{{ song.song_title }}{% endblock %}
+
+{% block content %}
+    <header>
+        <h1>{{ song.song_title }}</h1>
+    </header>
+
+    <hr>
+
+    <div>
+        {% if song.is_playable %}
+            <form method="post">
+                {% csrf_token %}
+                {{ rating_form.as_p }}
+
+                
+                <p><input type="submit" value="Calificar"></p>
+            </form>
+        {% else %}
+        {% endif %}
+    </div>
+
+{% endblock %}
+

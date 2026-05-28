@@ -1,10 +1,10 @@
+
 from django.db import models
 from django.utils import timezone
 from taggit.managers import TaggableManager
 from django.contrib.auth.models import User
 from django.contrib import admin
 from django.urls import reverse
-from taggit.models import Tag
 
 class Artist(models.Model):
     artist_name = models.CharField( max_length = 256, unique = True )
