@@ -149,24 +149,56 @@ def obtain_api_token():
 @login_required
 def detailed_song(request, id, slug):
     song = get_object_or_404(Song, id = id, song_slug = slug)
+    token = obtain_api_token()
 
-    if request.method == 'POST':
-        rating_form = RatingForm(request.POST)
+    if token:
+        headers = {'Authorization': f'Bearer {token}'}
 
-        if rating_form.is_valid():
-            payload = {'song': song.id,
-                       'user': request.user.id,
-                       'score': rating_form.cleaned_data['score']}
-            
-            response = requests.post('http://127.0.0.1:8001/api/ratings/', json = payload)
-            
-            if response.status_code == 201:
-                return redirect(song.get_absolute_url())
+        try:
+            response = requests.get(f'http://127.0.0.1:8001/api/ratings/song/{song.id}/', headers = headers)
+
+            if response.status_code == 200:
+                rating_stats = response.json()
+
+            else:
+                rating_stats = {'mean_score': 0, 'total_ratings': 0}
+
+        except requests.RequestException:
+            rating_stats = {'mean_score': 0, 'total_ratings': 0}
+
+        try:
+            response = requests.get(f'http://127.0.0.1:8001/api/ratings/song/{song.id}/user/{request.user.id}/', headers = headers)
+
+            if response.status_code == 200:
+                user_rating = response.json()
             
             else:
-                print(response.json())
-    
-    else:
-        rating_form = RatingForm()
+                user_rating = None
+            
+        except requests.RequestException:
+            user_rating = None
 
-    return render(request, 'beatemplate/beats/detailed_song.html', {'song': song, 'rating_form': rating_form})
+        if request.method == 'POST':
+            rating_form = RatingForm(request.POST)
+
+            if rating_form.is_valid():
+                payload = {'song': song.id,
+                        'user': request.user.id,
+                        'score': rating_form.cleaned_data['score']}
+                
+                response = requests.post('http://127.0.0.1:8001/api/ratings/', json = payload, headers = headers)
+                
+                if response.status_code == 201:
+                    return redirect(song.get_absolute_url())
+
+        else:
+            if user_rating:
+                rating_form = RatingForm( initial = {'score': user_rating['score']})
+
+            else:
+                rating_form = RatingForm()
+
+    return render(request, 'beatemplate/beats/detailed_song.html', {'song': song,
+                                                                    'rating_form': rating_form,
+                                                                    'rating_stats': rating_stats,
+                                                                    'user_rating' : user_rating})

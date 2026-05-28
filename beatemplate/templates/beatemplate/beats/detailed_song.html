@@ -14,11 +14,50 @@
         {% if song.is_playable %}
             <form method="post">
                 {% csrf_token %}
+
                 {{ rating_form.as_p }}
 
-                
                 <p><input type="submit" value="Calificar"></p>
             </form>
+
+            {% if rating_stats.total_ratings != 0 %}
+                <div>
+                    <h3>Valoraciones</h3>
+
+                    <p>Nota media: {{ rating_stats.mean_score }}</p>
+
+                    <p>Total de valoraciones: {{ rating_stats.total_ratings }}</p>
+                </div>
+
+            {% else %}
+                <div>
+                    <h3>Esta canción no tiene puntuación todavía</h3>
+
+                    <p>Sé el primero en valorarla</p>
+                </div>
+            {% endif %}
+
+            <hr>
+
+            <div>
+                <h3>Duración</h3>
+                <p></p>
+            </div>
+
+            <div>
+                <h3>Tags</h3>
+                <p></p>
+            </div>
+
+            <div>
+                <h3>Artistas</h3>
+                <p></p>
+            </div>
+
+            <div>
+                <h3>Aparece En</h3>
+                <p></p>
+            </div>
         {% else %}
         {% endif %}
     </div>
