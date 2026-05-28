@@ -1,3 +1,4 @@
+
 from .models import Rating
 from rest_framework import serializers
 
@@ -10,3 +11,8 @@ class SongRatingSerializer(serializers.Serializer):
     song_id = serializers.IntegerField()
     total_ratings = serializers.IntegerField()
     mean_score = serializers.FloatField()
+
+class UserSongRatingSerializer(serializers.Serializer):
+    song_id = serializers.IntegerField()
+    user_id = serializers.IntegerField()
+    score = serializers.IntegerField()

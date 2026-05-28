@@ -1,13 +1,11 @@
+
 from django.db import models
-from django.contrib.auth.models import User
 from django.core.validators import MinValueValidator, MaxValueValidator
 
-
 class Rating(models.Model):
-
     song = models.IntegerField()
     user = models.IntegerField()
-    score = models.PositiveSmallIntegerField(validators=[MinValueValidator(0), MaxValueValidator(10)])
+    score = models.PositiveSmallIntegerField(validators = [MinValueValidator(0), MaxValueValidator(10)])
 
     class Meta:
         unique_together = ('song', 'user')
