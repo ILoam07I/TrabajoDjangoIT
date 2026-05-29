@@ -1,0 +1,46 @@
+{% extends 'beatemplate/base.html' %}
+
+{% block title %}{{ artist.artist_name }}{% endblock %}
+
+{% block content %}
+    <header>
+        <h1>{{ artist.artist_name }}</h1>
+    </header>
+
+    <hr>
+
+    <div>
+        <div>
+            <h3>Lanzamientos</h3>
+            <ul>
+                {% for release in artist.release_set.all %}
+                    <li>
+                        <a href="{% url 'beatemplate:detailed_release' release.id release.release_slug %}">
+                            {{ release.release_title }}
+                        </a> 
+                        ({{ release.get_release_type_display }} - {{ release.release_date|date:"Y" }})
+                    </li>
+                {% empty %}
+                    <p>Este artista no tiene lanzamientos registrados todavía.</p>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <hr>
+
+        <div>
+            <h3>Canciones</h3>
+            <ul>
+                {% for song in artist.song_set.all %}
+                    <li>
+                        <a href="{% url 'beatemplate:detailed_song' song.id song.song_slug %}">
+                            {{ song.song_title }}
+                        </a>
+                    </li>
+                {% empty %}
+                    <p>Este artista no tiene canciones registradas todavía.</p>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+{% endblock %}

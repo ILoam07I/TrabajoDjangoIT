@@ -6,7 +6,7 @@ from django_tomselect.app_settings import TomSelectConfig
 
 from .models import Playlist
 
-class CreatePlaylistForm(forms.Form):
+class CreatePlaylistForm(forms.ModelForm):
     playlist_title = forms.CharField( max_length = 256 )
     playlist_description = forms.CharField( max_length = 256 )
 

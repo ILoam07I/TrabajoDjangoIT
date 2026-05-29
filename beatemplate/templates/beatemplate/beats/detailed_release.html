@@ -1,0 +1,63 @@
+{% extends 'beatemplate/base.html' %}
+
+{% block title %}{{ release.release_title }}{% endblock %}
+
+{% block content %}
+    <header>
+        <h1>{{ release.release_title }}</h1>
+        <p><strong>{{ release.get_release_type_display }}</strong> publicado el {{ release.release_date|date:"d/m/Y" }}</p>
+    </header>
+
+    <hr>
+
+    <div>
+        <div>
+            <h3>Artistas</h3>
+            <p>
+                {% for artist in release.artists.all %}
+                    <a href="{% url 'beatemplate:detailed_artist' artist.id artist.artist_slug %}">
+                        {{ artist.artist_name }}
+                    </a>
+                    {% if not forloop.last %}, {% endif %}
+                {% endfor %}
+            </p>
+        </div>
+
+        <hr>
+
+        <div>
+            <h3>Tracklist</h3>
+            <ul>
+                {% for track in release.release_songs.all %}
+                    <li>
+                        {% if track.disc_title %}
+                            <strong>{{ track.disc_title }}</strong> - 
+                        {% endif %}
+                        <a href="{% url 'beatemplate:detailed_song' track.song.id track.song.song_slug %}">
+                            {{ track.song.song_title }}
+                        </a>
+                        ({{ track.song.song_duration }})
+                    </li>
+                {% empty %}
+                    <p>No se han añadido canciones a este lanzamiento.</p>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <hr>
+
+        <div>
+            <h3>Tags del Lanzamiento</h3>
+            <p>
+                {% for tag in release.get_tags %}
+                    <a href="{% url 'beatemplate:tag_search' tag.slug %}">
+                        {{ tag.name }}
+                    </a>
+                    {% if not forloop.last %}, {% endif %}
+                {% empty %}
+                    Ninguno
+                {% endfor %}
+            </p>
+        </div>
+    </div>
+{% endblock %}

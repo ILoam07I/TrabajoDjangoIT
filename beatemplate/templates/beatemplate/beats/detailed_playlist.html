@@ -1,0 +1,42 @@
+{% extends 'beatemplate/base.html' %}
+
+{% block title %}{{ playlist.playlist_title }}{% endblock %}
+
+{% block content %}
+    <header>
+        <h1>{{ playlist.playlist_title }}</h1>
+        <p>Creada por <strong>{{ playlist.user.username }}</strong> el {{ playlist.playlist_date|date:"d/m/Y" }}</p>
+    </header>
+
+    <hr>
+
+    <div>
+        <div>
+            <h3>Descripción</h3>
+            <p>{{ playlist.playlist_description }}</p>
+        </div>
+
+        <hr>
+
+        <div>
+            <h3>Canciones</h3>
+            <ol>
+                {% for song in playlist.songs.all %}
+                    <li>
+                        <a href="{% url 'beatemplate:detailed_song' song.id song.song_slug %}">
+                            {{ song.song_title }}
+                        </a> 
+                        - 
+                        {% for artist in song.artists.all %}
+                            <a href="{% url 'beatemplate:detailed_artist' artist.id artist.artist_slug %}">
+                                {{ artist.artist_name }}
+                            </a>{% if not forloop.last %}, {% endif %}
+                        {% endfor %}
+                    </li>
+                {% empty %}
+                    <p>Esta playlist está vacía.</p>
+                {% endfor %}
+            </ol>
+        </div>
+    </div>
+{% endblock %}

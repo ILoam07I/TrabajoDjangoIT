@@ -5,6 +5,7 @@ from taggit.managers import TaggableManager
 from django.contrib.auth.models import User
 from django.contrib import admin
 from django.urls import reverse
+from django.utils.text import slugify
 
 class Artist(models.Model):
     artist_name = models.CharField( max_length = 256, unique = True )
@@ -94,6 +95,13 @@ class Song(models.Model):
 
         return self.song_releases.filter(release__release_date__lte = today).exists()
     
+    @property
+    def get_tags(self):
+        tags = set()
+        tags = self.tags.all()
+        
+        return tags
+
     @admin.display(description = 'Artistas')
     def list_artists(self):
         artists = self.artists.all()
@@ -136,7 +144,7 @@ class Playlist(models.Model):
                              on_delete = models.CASCADE)
     
     playlist_title = models.CharField( max_length = 256 )
-    playlist_slug = models.SlugField( max_length = 256 )
+    playlist_slug = models.SlugField( max_length = 256, blank = True, null = True)
     playlist_description = models.CharField( max_length = 256 )
     playlist_date = models.DateTimeField( auto_now_add = True )
     songs = models.ManyToManyField( Song )
@@ -151,3 +159,9 @@ class Playlist(models.Model):
 
     def __str__(self):
         return self.playlist_title
+
+    def save(self, *args, **kwargs):
+        if not self.playlist_slug:
+            self.playlist_slug = slugify(self.playlist_title)
+            
+        super().save(*args, **kwargs)
