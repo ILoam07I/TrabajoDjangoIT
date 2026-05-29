@@ -186,9 +186,13 @@ def detailed_song(request, id, slug):
                         'user': request.user.id,
                         'score': rating_form.cleaned_data['score']}
                 
-                response = requests.post('http://127.0.0.1:8001/api/ratings/', json = payload, headers = headers)
+                if user_rating:
+                    rating_id = user_rating.get('id')
+                    response = requests.put(f'http://127.0.0.1:8001/api/ratings/{rating_id}/', json=payload, headers=headers)
+                else:
+                    response = requests.post('http://127.0.0.1:8001/api/ratings/', json=payload, headers=headers)
                 
-                if response.status_code == 201:
+                if response.status_code in [200, 201]:
                     return redirect(song.get_absolute_url())
 
         else:
