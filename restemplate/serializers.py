@@ -13,6 +13,7 @@ class SongRatingSerializer(serializers.Serializer):
     mean_score = serializers.FloatField()
 
 class UserSongRatingSerializer(serializers.Serializer):
+    id = serializers.IntegerField()
     song_id = serializers.IntegerField()
     user_id = serializers.IntegerField()
-    score = serializers.IntegerField()
+    score = serializers.FloatField()

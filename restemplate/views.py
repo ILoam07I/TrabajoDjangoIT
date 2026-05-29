@@ -29,6 +29,7 @@ class RatingViewSet(viewsets.ModelViewSet):
         return Response({'song_id': int(song_id),
                          'total_ratings': datos['total'] or 0,
                          'mean_score': round(datos['media'] or 0, 1)})
+
     
 
 class RatingView(APIView):
@@ -67,7 +68,8 @@ class UserSongRatingView(APIView):
     def get(self, request, song_id, user_id):
         rating = get_object_or_404(Rating, song=song_id, user=user_id)
 
-        data = {'song_id': rating.song,
+        data = {'id': rating.id,
+                'song_id': rating.song,
                 'user_id': rating.user,
                 'score': rating.score}
 
