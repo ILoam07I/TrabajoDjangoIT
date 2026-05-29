@@ -10,9 +10,10 @@
 
     <form method="post">
 
-        {{ form_registro.as_p }}
-
         {% csrf_token %}
+
+        {{ register_form.as_p }}
+
         
         <p><input type="submit" value="Crear mi cuenta"></p>
     </form>
