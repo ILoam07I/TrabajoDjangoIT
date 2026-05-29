@@ -35,12 +35,12 @@ def register(request):
             new_account.set_password(register_form.cleaned_data['password'])
             new_account.save()
             login(request, new_account)
-            return render(request, 'beatemplate/register_completed.html', {'new_account': new_account})
+            return render(request, 'beatemplate/users/register_completed.html', {'new_account': new_account})
         
     else:
         register_form = RegisterForm()
         
-    return render(request, 'beatemplate/register.html', {'register_form': register_form})
+    return render(request, 'beatemplate/users/register.html', {'register_form': register_form})
 
 def feed(request):
     artists = Artist.objects.all()
