@@ -1,4 +1,3 @@
-
 import os
 import requests
 
@@ -6,6 +5,9 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login
 from django.db.models import Q
+
+from django.core.paginator import Paginator
+
 from taggit.models import Tag
 from django_tomselect.autocompletes import AutocompleteModelView
 
@@ -43,32 +45,46 @@ def register(request):
     return render(request, 'beatemplate/users/register.html', {'register_form': register_form})
 
 def feed(request):
-    artists = Artist.objects.all()
-    published_albums = Release.objects.get_published_albums()
-    published_singles = Release.objects.get_published_singles()
-    announced_releases = Release.objects.get_announced_releases()
+
+    artistas_lista = Artist.objects.all()
+    paginator_artistas = Paginator(artistas_lista, 6) 
+    page_artistas = request.GET.get('page_artistas')
+    artists_paginados = paginator_artistas.get_page(page_artistas)
+
+    playlists_lista = Playlist.objects.all()
+    paginator_playlists = Paginator(playlists_lista, 4)
+    page_playlists = request.GET.get('page_playlists')
+    playlists_paginadas = paginator_playlists.get_page(page_playlists)
+
+    published_albums = Release.objects.get_published_albums()[:4] 
+    published_singles = Release.objects.get_published_singles()[:4]
+    announced_releases = Release.objects.get_announced_releases()[:4]
     
-    group = {'artists' : artists,
+    group = {
+             'artists' : artists_paginados,
+             'playlists' : playlists_paginadas,
              'published_albums' : published_albums,
              'published_singles' : published_singles,
-             'announced_releases' : announced_releases}
+             'announced_releases' : announced_releases
+            }
     
     return render(request, 'beatemplate/feed.html', group)
 
 def detailed_artist(request, id, slug):
     artist = get_object_or_404(Artist, id = id, artist_slug = slug)
-    
-    return render(request, 'beatemplate/detailed_artist.html', {'artist' : artist})
+
+    return render(request, 'beatemplate/beats/detailed_artist.html', {'artist' : artist})
+
 
 def detailed_release(request, id, slug):
     release = get_object_or_404(Release, id = id, release_slug = slug)
     
-    return render(request, 'beatemplate/detailed_release.html', {'release' : release})
+    return render(request, 'beatemplate/beats/detailed_release.html', {'release' : release})
 
 def detailed_playlist(request, id, slug):
     playlist = get_object_or_404(Playlist, id = id, playlist_slug = slug)
     
-    return render(request, 'beatemplate/detailed_playlist.html', {'playlist' : playlist})
+    return render(request, 'beatemplate/beats/detailed_playlist.html', {'playlist' : playlist})
 
 def search(request):
     query = request.GET.get('q')
@@ -123,13 +139,21 @@ def tag_search(request, slug):
 
 @login_required
 def new_playlist(request):
-    form = CreatePlaylistForm( data = request.POST )
-    playlist = None
 
-    if form.is_valid():
-        playlist = form.save( commit = False )
-        playlist.user = request.user
-        playlist.save()
+    if request.method == "POST":
+
+        form = CreatePlaylistForm( data = request.POST )
+        playlist = None
+
+        if form.is_valid():
+            playlist = form.save( commit = False )
+            playlist.user = request.user
+            playlist.save()
+            form.save_m2m()
+
+        return redirect(playlist.get_absolute_url())
+    else: 
+        form = CreatePlaylistForm()
 
     return render(request, 'beatemplate/beats/new_playlist.html', {'form': form})
 
@@ -186,6 +210,7 @@ def detailed_song(request, id, slug):
                         'user': request.user.id,
                         'score': rating_form.cleaned_data['score']}
                 
+
                 if user_rating:
                     rating_id = user_rating.get('id')
                     response = requests.put(f'http://127.0.0.1:8001/api/ratings/{rating_id}/', json=payload, headers=headers)
@@ -193,6 +218,7 @@ def detailed_song(request, id, slug):
                     response = requests.post('http://127.0.0.1:8001/api/ratings/', json=payload, headers=headers)
                 
                 if response.status_code in [200, 201]:
+
                     return redirect(song.get_absolute_url())
 
         else:

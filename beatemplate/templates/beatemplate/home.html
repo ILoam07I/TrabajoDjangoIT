@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 {% extends 'beatemplate/base.html' %}
 
@@ -15,3 +16,24 @@
         <h3>Inicia sesión para acceder a todas las funciones de Beatemplate.</h3>
     </div>
 {% endblock %}
+=======
+{% extends 'beatemplate/base.html' %}
+{% block title %}Bienvenido a Sound Range{% endblock %}
+
+{% block content %}
+<div class="container text-center mt-5 pt-5">
+    <i class="bi bi-soundwave display-1 text-success mb-4"></i>
+    <h1 class="display-4 fw-bold mb-3">Tu música, a otro nivel</h1>
+    <p class="lead text-muted mb-5">Explora artistas, descubre nuevos lanzamientos y crea las mejores playlists.</p>
+    
+    {% if request.user.is_authenticated %}
+        <a href="{% url 'beatemplate:feed' %}" class="btn btn-success btn-lg px-5 rounded-pill fw-bold">Ir a mi Feed</a>
+    {% else %}
+        <div class="d-flex justify-content-center gap-3">
+            <a href="{% url 'beatemplate:register' %}" class="btn btn-success btn-lg px-4 rounded-pill fw-bold">Registrarse gratis</a>
+            <a href="{% url 'beatemplate:login' %}" class="btn btn-outline-light btn-lg px-4 rounded-pill fw-bold">Iniciar Sesión</a>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}
+>>>>>>> 89550f6 (frontend)
