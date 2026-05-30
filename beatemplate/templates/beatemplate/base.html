@@ -1,45 +1,68 @@
-
 <!DOCTYPE html>
-<html>
-
+<html lang="es" data-bs-theme="dark">
 <head>
-    <title>{% block title %}{% endblock %}</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %} Beatemplate {% endblock %}</title>
+    
+    <!-- Bootstrap CSS y los Iconos -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    
+    <style>
+        body { background-color: #121212; color: #e0e0e0; }
+        .card { transition: transform 0.2s; }
+        .card:hover { transform: scale(1.02); }
+    </style>
 </head>
 
 <body>
-    <nav id="sidebar">
-        <div class="usuario-nav">
-            {% if request.user.is_authenticated %}
-                <p>Bienvenido, {{ request.user.username }}.</p>
+    <!-- Barra Superior -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-black border-bottom border-secondary mb-4 p-3 shadow-sm">
+        <div class="container d-flex justify-content-between align-items-center">
+            
+            <!-- Logo / Inicio -->
+            <a class="navbar-brand fw-bold text-success" href="{% url 'beatemplate:home' %}">
+                <i class="bi bi-soundwave me-2"></i>Beatemplate
+            </a>
 
-                <form action="{% url 'beatemplate:logout' %}" method="post">
-                    {% csrf_token %}
-                    <button type="submit">Cerrar Sesión</button>
+            <!-- Controles de la derecha -->
+            <div class="d-flex align-items-center gap-3">
+                
+                <!-- Buscador -->
+                <form action="{% url 'beatemplate:search' %}" method="get" class="d-flex m-0">
+                    <input type="text" name="q" class="form-control form-control-sm bg-dark text-white border-secondary me-2" placeholder="Buscar..." required>
+                    <button type="submit" class="btn btn-sm btn-outline-success"><i class="bi bi-search"></i></button>
                 </form>
 
-            {% else %}
-                <p><a href="{% url 'beatemplate:login' %}">Iniciar Sesión</a></p>
-            {% endif %}
+                <a href="{% url 'beatemplate:feed' %}" class="btn btn-sm btn-outline-light"><i class="bi bi-house-door"></i> Feed</a>
 
-            <a href="{% url 'beatemplate:feed' %}">Feed</a>
-
-            <div>
-                <form action="{% url 'beatemplate:search' %}" method="get">
-                    <input type="text" name="q" placeholder="Buscar...">
-                    <button type="submit">Buscar</button>
-                </form>
+                <!-- Zona de Usuario -->
+                {% if request.user.is_authenticated %}
+                    <span class="text-light small d-none d-md-inline text-muted border-start border-secondary ps-3">Hola, <strong class="text-white">{{ request.user.username }}</strong></span>
+                    <form action="{% url 'beatemplate:logout' %}" method="post" class="m-0">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-sm btn-danger"><i class="bi bi-box-arrow-right"></i> Salir</button>
+                    </form>
+                {% else %}
+                    <div class="border-start border-secondary ps-3">
+                        <a href="{% url 'beatemplate:login' %}" class="btn btn-sm btn-success">Entrar</a>
+                    </div>
+                {% endif %}
             </div>
         </div>
     </nav>
-
-    <div id="content">
+    <!-- Contenido Principal -->
+    <div id="content" class="container pb-5">
         {% block content %}
         {% endblock %}
     </div>
+
+    <!-- Pie de página -->
+    <footer class="container mt-5">
+        <hr class="border-secondary">
+        <p class="text-center text-muted small pb-4">&copy; Beatemplate</p>
+    </footer>
 </body>
-
-<footer>
-    <hr>
-</footer>
-
-</html
+</html>
+>>>>>>> 89550f6 (frontend)

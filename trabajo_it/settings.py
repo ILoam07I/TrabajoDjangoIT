@@ -129,3 +129,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_URL = 'beatemplate:login'
 LOGIN_REDIRECT_URL = 'beatemplate:feed'
 LOGOUT_REDIRECT_URL = 'beatemplate:logout'
+
+TOMSELECT = {
+    "DEFAULT_CSS_FRAMEWORK": "bootstrap5",  # Options: "default", "bootstrap4", "bootstrap5"
+}
+
