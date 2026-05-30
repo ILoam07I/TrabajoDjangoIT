@@ -1,0 +1,163 @@
+{% extends 'beatemplate/base.html' %}
+{% block title %}Feed{% endblock %}
+
+{% block content %}
+    <div class="d-flex justify-content-between align-items-center mb-4 mt-4">
+        <h2 class="fw-bold">
+            Bienvenido, 
+            {% if request.user.is_authenticated %}
+                <span class="text-success">{{ request.user.username }}</span>
+            {% else %}
+                <span class="text-success fs-4">Inicia Sesión para disfrutar de todas las funciones</span>
+            {% endif %}
+        </h2>
+        {% if request.user.is_authenticated %}
+            <a href="{% url 'beatemplate:new_playlist' %}" class="btn btn-success"><i class="bi bi-plus-circle me-1"></i> Crear Playlist</a>
+        {% endif %}
+    </div>
+
+    <!-- Sección Últimos Álbumes -->
+    <h4 class="mb-3 text-success border-bottom border-secondary pb-2"><i class="bi bi-journal-album me-2"></i>Últimos Álbumes</h4>
+    <div class="row mb-5">
+        {% for album in published_albums %}
+        <div class="col-md-3 mb-4">
+            <div class="card h-100 text-center p-3 shadow-sm bg-dark border-secondary">
+                <i class="bi bi-disc display-1 text-secondary mb-3"></i>
+                <h5 class="card-title text-truncate">
+                    <a href="{% url 'beatemplate:detailed_release' album.id album.release_slug %}" class="text-white stretched-link text-decoration-none">{{ album.release_title }}</a>
+                </h5>
+                <p class="card-text text-muted small mb-2">
+                    {% for artist in album.artists.all %}
+                        {{ artist.artist_name }}{% if not forloop.last %}, {% endif %}
+                    {% endfor %}
+                </p>
+                <div>
+                    {% for tag in album.get_tags %}
+                        <span class="badge bg-secondary fw-normal">#{{ tag.name }}</span>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        {% empty %}
+            <p class="text-muted">No hay álbumes publicados recientemente.</p>
+        {% endfor %}
+    </div>
+
+    <!-- Sección Últimos Singles -->
+    <h4 class="mb-3 text-success border-bottom border-secondary pb-2"><i class="bi bi-music-note me-2"></i>Últimos Singles</h4>
+    <div class="row mb-5">
+        {% for single in published_singles %}
+        <div class="col-md-3 mb-4">
+            <div class="card h-100 text-center p-3 shadow-sm bg-dark border-secondary">
+                <i class="bi bi-vinyl display-1 text-secondary mb-3"></i>
+                <h5 class="card-title text-truncate">
+                    <a href="{% url 'beatemplate:detailed_release' single.id single.release_slug %}" class="text-white stretched-link text-decoration-none">{{ single.release_title }}</a>
+                </h5>
+                <p class="card-text text-muted small mb-2">
+                    {% for artist in single.artists.all %}
+                        {{ artist.artist_name }}{% if not forloop.last %}, {% endif %}
+                    {% endfor %}
+                </p>
+                <div>
+                    {% for tag in single.get_tags %}
+                        <span class="badge bg-secondary fw-normal">#{{ tag.name }}</span>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        {% empty %}
+            <p class="text-muted">No hay singles publicados recientemente.</p>
+        {% endfor %}
+    </div>
+
+    <!-- Sección Lanzamientos Anunciados -->
+    <h4 class="mb-3 text-success border-bottom border-secondary pb-2"><i class="bi bi-calendar-event me-2"></i>Lanzamientos Anunciados</h4>
+    <div class="row mb-5">
+        {% for announcement in announced_releases %}
+        <div class="col-md-3 mb-4">
+            <div class="card h-100 text-center p-3 shadow-sm bg-dark border-warning">
+                <i class="bi bi-clock-history display-1 text-warning mb-3"></i>
+                <h5 class="card-title text-truncate">
+                    <a href="{% url 'beatemplate:detailed_release' announcement.id announcement.release_slug %}" class="text-white stretched-link text-decoration-none">{{ announcement.release_title }}</a>
+                </h5>
+                <p class="card-text text-muted small mb-2">
+                    {% for artist in announcement.artists.all %}
+                        {{ artist.artist_name }}{% if not forloop.last %}, {% endif %}
+                    {% endfor %}
+                </p>
+                <div>
+                    {% for tag in announcement.get_tags %}
+                        <span class="badge bg-secondary fw-normal">#{{ tag.name }}</span>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        {% empty %}
+            <p class="text-muted">No hay nuevos lanzamientos anunciados.</p>
+        {% endfor %}
+    </div>
+
+    <!-- Sección Playlists (Paginadas) -->
+    <h4 class="mb-3 text-success border-bottom border-secondary pb-2"><i class="bi bi-collection-play me-2"></i>Explorar Playlists</h4>
+    <div class="row">
+        {% for playlist in playlists %}
+        <div class="col-md-3 mb-4">
+            <div class="card h-100 p-3 border-0 shadow-sm" style="background-color: #181818;">
+                <div class="card-body text-center">
+                    <i class="bi bi-music-note-list display-4 text-success mb-2"></i>
+                    <h6 class="card-title text-truncate mb-1">
+                        <a href="{% url 'beatemplate:detailed_playlist' playlist.id playlist.playlist_slug %}" class="text-white stretched-link text-decoration-none">{{ playlist.playlist_title }}</a>
+                    </h6>
+                    <p class="card-text text-muted small m-0">Por {{ playlist.user.username }}</p>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+            <p class="text-muted">Todavía no hay ninguna playlist creada.</p>
+        {% endfor %}
+    </div>
+
+    <!-- Controles Paginación Playlists -->
+    <nav class="mb-5">
+        <ul class="pagination pagination-sm justify-content-center">
+            {% if playlists.has_previous %}
+                <li class="page-item"><a class="page-link bg-dark text-success border-secondary" href="?page_playlists={{ playlists.previous_page_number }}&page_artistas={{ artists.number }}">Anterior</a></li>
+            {% endif %}
+            <li class="page-item disabled"><span class="page-link bg-dark text-white border-secondary">Playlists: {{ playlists.number }} de {{ playlists.paginator.num_pages }}</span></li>
+            {% if playlists.has_next %}
+                <li class="page-item"><a class="page-link bg-dark text-success border-secondary" href="?page_playlists={{ playlists.next_page_number }}&page_artistas={{ artists.number }}">Siguiente</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+
+    <!-- Sección Artistas (Paginados) -->
+    <h4 class="mb-3 text-success border-bottom border-secondary pb-2"><i class="bi bi-person-lines-fill me-2"></i>Mejores Artistas</h4>
+    <div class="row">
+        {% for artist in artists %}
+        <div class="col-md-4 col-sm-6 mb-4">
+            <div class="card bg-dark border-secondary h-100 text-center shadow-sm">
+                <div class="card-body">
+                    <i class="bi bi-person-circle display-4 text-success mb-2"></i>
+                    <h5 class="card-title m-0">
+                        <a href="{% url 'beatemplate:detailed_artist' artist.id artist.artist_slug %}" class="text-white stretched-link text-decoration-none">{{ artist.artist_name }}</a>
+                    </h5>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Controles Paginación Artistas -->
+    <nav class="mb-4">
+        <ul class="pagination pagination-sm justify-content-center">
+            {% if artists.has_previous %}
+                <li class="page-item"><a class="page-link bg-dark text-success border-secondary" href="?page_artistas={{ artists.previous_page_number }}&page_playlists={{ playlists.number }}">Anterior</a></li>
+            {% endif %}
+            <li class="page-item disabled"><span class="page-link bg-dark text-white border-secondary">Artistas: {{ artists.number }} de {{ artists.paginator.num_pages }}</span></li>
+            {% if artists.has_next %}
+                <li class="page-item"><a class="page-link bg-dark text-success border-secondary" href="?page_artistas={{ artists.next_page_number }}&page_playlists={{ playlists.number }}">Siguiente</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+{% endblock %}
+

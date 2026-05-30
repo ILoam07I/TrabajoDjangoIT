@@ -1,0 +1,193 @@
+name: it-prod
+
+services:
+
+# ==========================================
+
+# BLOQUE 1: PROYECTO BLOG
+
+# ==========================================
+
+db-blog:
+
+image: postgres:18
+
+restart: always
+
+volumes:
+
+- blog_postgres_data:/var/lib/postgresql/data
+
+env_file:
+
+- .env
+
+environment:
+
+- POSTGRES_DB=${POSTGRES_DB_BLOG}
+
+- POSTGRES_USER=${POSTGRES_USER_BLOG}
+
+- POSTGRES_PASSWORD=${POSTGRES_PASSWORD_BLOG}
+
+- PGDATA=/var/lib/postgresql/data/pgdata
+
+# Comprueba si la BD acepta conexiones
+
+healthcheck:
+
+test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER_BLOG} -d ${POSTGRES_DB_BLOG}"]
+
+interval: 5s
+
+timeout: 5s
+
+retries: 5
+
+web-blog:
+
+build: ./MiPrimerProyectoDjango
+
+# Primero migra, si tiene éxito (&&), levanta Gunicorn
+
+command: >
+
+sh -c "python manage.py collectstatic --noinput &&
+
+python manage.py migrate &&
+
+gunicorn mi_primer_proyecto_django.wsgi:application --bind 0.0.0.0:8000"
+
+volumes:
+
+- ./MiPrimerProyectoDjango:/app
+
+- blog_static_data:/app/staticfiles
+
+env_file:
+
+- .env
+
+environment:
+
+- DJANGO_SETTINGS_MODULE=mi_primer_proyecto_django.settings.prod
+
+depends_on:
+
+db-blog:
+
+condition: service_healthy # No arranca hasta que db-blog esté "sana"
+
+# ==========================================
+
+# BLOQUE 2: PROYECTO API (BIBLIOTECA)
+
+# ==========================================
+
+db-api:
+
+image: postgres:18
+
+restart: always
+
+volumes:
+
+- api_postgres_data:/var/lib/postgresql/data
+
+env_file:
+
+- .env
+
+environment:
+
+- POSTGRES_DB=${POSTGRES_DB_API}
+
+- POSTGRES_USER=${POSTGRES_USER_API}
+
+- POSTGRES_PASSWORD=${POSTGRES_PASSWORD_API}
+
+- PGDATA=/var/lib/postgresql/data/pgdata
+
+healthcheck:
+
+test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER_API} -d ${POSTGRES_DB_API}"]
+
+interval: 5s
+
+timeout: 5s
+
+retries: 5
+
+web-api:
+
+build: ./MiPrimeraAPI
+
+command: >
+
+sh -c "python manage.py collectstatic --noinput &&
+
+python manage.py migrate &&
+
+gunicorn mi_primera_api.wsgi:application --bind 0.0.0.0:8001"
+
+volumes:
+
+- ./MiPrimeraAPI:/app
+
+- api_static_data:/app/staticfiles
+
+env_file:
+
+- .env
+
+environment:
+
+- DJANGO_SETTINGS_MODULE=mi_primera_api.settings.prod
+
+depends_on:
+
+db-api:
+
+condition: service_healthy
+
+# ==========================================
+
+# BLOQUE 3: SERVIDOR WEB FRONT-END (NGINX)
+
+# ==========================================
+
+nginx:
+
+image: nginx:alpine
+
+restart: always
+
+ports:
+
+- "8000:8000"
+
+- "8001:8001"
+
+volumes:
+
+- ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+
+- blog_static_data:/staticfiles_blog
+
+- api_static_data:/staticfiles_api
+
+depends_on:
+
+- web-blog
+
+- web-api
+
+volumes:
+
+blog_postgres_data:
+
+api_postgres_data:
+
+blog_static_data:
+
+api_static_data:
