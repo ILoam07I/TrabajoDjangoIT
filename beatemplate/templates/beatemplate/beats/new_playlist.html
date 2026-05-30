@@ -1,0 +1,29 @@
+{% extends 'beatemplate/base.html' %}
+{% block title %}Crear Playlist{% endblock %}
+
+{% block content %}
+
+{{ form.media }}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card bg-dark border-secondary shadow-lg">
+                <div class="card-header border-secondary bg-transparent pb-0 pt-4">
+                    <h3 class="text-success fw-bold"><i class="bi bi-plus-circle me-2"></i>Nueva Playlist</h3>
+                </div>
+                <div class="card-body p-4">
+                    <form method="post">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <div class="d-flex justify-content-end mt-4">
+                            <a href="{% url 'beatemplate:feed' %}" class="btn btn-outline-light me-2">Cancelar</a>
+                            <button type="submit" class="btn btn-success"><i class="bi bi-save me-1"></i> Guardar Playlist</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
