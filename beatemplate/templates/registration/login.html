@@ -1,24 +1,39 @@
-
-{% extends "beatemplate/base.html" %} 
-
+{% extends 'beatemplate/base.html' %}
 {% block title %}Iniciar Sesión{% endblock %}
 
 {% block content %}
-    <h1>Iniciar Sesión</h1>
-
-    {% if form.errors %}
-        <p>Los datos introducidos no coinciden. Inténtalo de nuevo.</p>
-
-    {% else %}
-        <p>Por favor, utiliza el siguiente formulario para acceder:</p>
-    {% endif %}
-
-    <div class="login-form">
-        <form method="post">
-            {{ form.as_p }}
-            {% csrf_token %}
-            <input type="hidden" name="next" value="{{ next }}" />
-            <p><input type="submit" value="Iniciar Sesión"></p>
-        </form>
+<div class="container mt-5 pt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-5">
+            <div class="card bg-dark border-secondary shadow-lg">
+                <div class="card-body p-5">
+                    <div class="text-center mb-4">
+                        <i class="bi bi-box-arrow-in-right display-4 text-success mb-2"></i>
+                        <h2 class="fw-bold">Iniciar Sesión</h2>
+                    </div>
+                    
+                    <form method="post">
+                        {% csrf_token %}
+                        <!-- Aquí aplicamos las clases a los campos por defecto de Django -->
+                        <div class="mb-3">
+                            <label class="form-label text-white">Usuario</label>
+                            <input type="text" name="username" class="form-control bg-dark text-white border-secondary" required autofocus>
+                        </div>
+                        <div class="mb-4">
+                            <label class="form-label text-white">Contraseña</label>
+                            <input type="password" name="password" class="form-control bg-dark text-white border-secondary" required>
+                        </div>
+                        
+                        <div class="d-grid mt-2">
+                            <button type="submit" class="btn btn-success btn-lg fw-bold">Entrar</button>
+                        </div>
+                        <input type="hidden" name="next" value="{{ next }}">
+                    </form>
+                    
+                    <p class="text-center text-muted mt-4 mb-0">¿Eres nuevo aquí? <a href="{% url 'beatemplate:register' %}" class="text-success text-decoration-none fw-bold">Regístrate</a></p>
+                </div>
+            </div>
+        </div>
     </div>
+</div>
 {% endblock %}

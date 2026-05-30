@@ -1,0 +1,48 @@
+{% extends 'beatemplate/base.html' %}
+{% block title %}{{ release.release_title }}{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-4 text-center mb-4">
+            <div class="card bg-dark border-secondary p-3">
+                <i class="bi bi-vinyl display-1 text-success mb-3"></i>
+                <h2 class="fw-bold">{{ release.release_title }}</h2>
+                <h5 class="text-muted">{{ release.get_release_type_display }}</h5>
+                <p class="mt-2 text-secondary">
+                    {% if release.is_published %}
+                        Publicado el {{ release.release_date|date:"d/m/Y" }}
+                    {% else %}
+                        Sale en: <span class="text-danger fw-bold">{{ release.release_date|timeuntil }}</span>
+                    {% endif %}
+                </p>
+                <div class="mt-3">
+                    {% for artist in release.artists.all %}
+                        <a href="{% url 'beatemplate:detailed_artist' artist.id artist.artist_slug %}" class="btn btn-sm btn-outline-success mb-1">{{ artist.artist_name }}</a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <h3 class="text-success border-bottom border-secondary pb-2 mb-3">Tracklist</h3>
+            <ul class="list-group list-group-flush mb-4">
+                {% for track in release.release_songs.all %}
+                    <li class="list-group-item bg-transparent text-white border-secondary d-flex justify-content-between align-items-center">
+                        <div>
+                            <span class="text-muted me-3">{{ track.track_number }}.</span>
+                
+                            {% if track.disc_title %}
+                                <span class="badge bg-secondary me-2">{{ track.disc_title }}</span>
+                            {% endif %}
+                            <a href="{% url 'beatemplate:detailed_song' track.song.id track.song.song_slug %}" class="text-white text-decoration-none fw-bold">{{ track.song.song_title }}</a>
+                        </div>
+                        <span class="text-muted small"><i class="bi bi-clock me-1"></i>{{ track.song.song_duration }}</span>
+                    </li>
+                {% empty %}
+                    <p class="text-muted">No se han añadido canciones a este lanzamiento.</p>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}
