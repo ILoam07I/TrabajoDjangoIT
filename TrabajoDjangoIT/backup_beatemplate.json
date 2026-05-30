@@ -1,0 +1,2432 @@
+[
+{
+    "model": "beatemplate.artist",
+    "pk": 1,
+    "fields": {
+        "artist_name": "J. Cole",
+        "artist_slug": "j-cole"
+    }
+},
+{
+    "model": "beatemplate.artist",
+    "pk": 2,
+    "fields": {
+        "artist_name": "Future",
+        "artist_slug": "future"
+    }
+},
+{
+    "model": "beatemplate.artist",
+    "pk": 3,
+    "fields": {
+        "artist_name": "Tems",
+        "artist_slug": "tems"
+    }
+},
+{
+    "model": "beatemplate.artist",
+    "pk": 4,
+    "fields": {
+        "artist_name": "PJ",
+        "artist_slug": "pj"
+    }
+},
+{
+    "model": "beatemplate.artist",
+    "pk": 5,
+    "fields": {
+        "artist_name": "Erykah Badu",
+        "artist_slug": "erykah-badu"
+    }
+},
+{
+    "model": "beatemplate.artist",
+    "pk": 6,
+    "fields": {
+        "artist_name": "Petey Pablo",
+        "artist_slug": "petey-pablo"
+    }
+},
+{
+    "model": "beatemplate.artist",
+    "pk": 7,
+    "fields": {
+        "artist_name": "Burna Boy",
+        "artist_slug": "burna-boy"
+    }
+},
+{
+    "model": "beatemplate.artist",
+    "pk": 8,
+    "fields": {
+        "artist_name": "Morray",
+        "artist_slug": "morray"
+    }
+},
+{
+    "model": "beatemplate.artist",
+    "pk": 9,
+    "fields": {
+        "artist_name": "David Guetta",
+        "artist_slug": "david-guetta"
+    }
+},
+{
+    "model": "beatemplate.release",
+    "pk": 1,
+    "fields": {
+        "release_title": "The Fall Off",
+        "release_slug": "the-fall-off",
+        "release_date": "2026-02-06",
+        "release_type": "ALBUM",
+        "artists": [
+            1
+        ]
+    }
+},
+{
+    "model": "beatemplate.song",
+    "pk": 1,
+    "fields": {
+        "song_title": "29 Intro",
+        "song_slug": "29-intro",
+        "song_duration": "00:00:57",
+        "artists": [
+            1
+        ]
+    }
+},
+{
+    "model": "beatemplate.song",
+    "pk": 2,
+    "fields": {
+        "song_title": "Two Three",
+        "song_slug": "two-three",
+        "song_duration": "00:03:16",
+        "artists": [
+            1
+        ]
+    }
+},
+{
+    "model": "beatemplate.song",
+    "pk": 3,
+    "fields": {
+        "song_title": "SAFETY",
+        "song_slug": "safety",
+        "song_duration": "00:05:18",
+        "artists": [
+            1
+        ]
+    }
+},
+{
+    "model": "beatemplate.song",
+    "pk": 4,
+    "fields": {
+        "song_title": "Run A Train",
+        "song_slug": "run-a-train",
+        "song_duration": "00:04:02",
+        "artists": [
+            1,
+            2
+        ]
+    }
+},
+{
+    "model": "beatemplate.song",
+    "pk": 5,
+    "fields": {
+        "song_title": "Poor Thang",
+        "song_slug": "poor-thang",
+        "song_duration": "00:04:50",
+        "artists": [
+            1
+        ]
+    }
+},
+{
+    "model": "beatemplate.song",
+    "pk": 6,
+    "fields": {
+        "song_title": "Legacy",
+        "song_slug": "legacy",
+        "song_duration": "00:03:55",
+        "artists": [
+            4,
+            1
+        ]
+    }
+},
+{
+    "model": "beatemplate.song",
+    "pk": 7,
+    "fields": {
+        "song_title": "Bunce Road Blues",
+        "song_slug": "bunce-road-blues",
+        "song_duration": "00:05:10",
+        "artists": [
+            3,
+            1,
+            2
+        ]
+    }
+},
+{
+    "model": "beatemplate.song",
+    "pk": 8,
+    "fields": {
+        "song_title": "WHO TF IZ U",
+        "song_slug": "who-tf-iz-u",
+        "song_duration": "00:04:37",
+        "artists": [
+            1
+        ]
+    }
+},
+{
+    "model": "beatemplate.song",
+    "pk": 9,
+    "fields": {
+        "song_title": "Bombs in the Ville/Hit the Gas",
+        "song_slug": "bombs-in-the-villehit-the-gas",
+        "song_duration": "00:04:06",
+        "artists": [
+            1
+        ]
+    }
+},
+{
+    "model": "beatemplate.song",
+    "pk": 10,
+    "fields": {
+        "song_title": "Lonely at the Top",
+        "song_slug": "lonely-at-the-top",
+        "song_duration": "00:03:24",
+        "artists": [
+            1
+        ]
+    }
+},
+{
+    "model": "beatemplate.song",
+    "pk": 11,
+    "fields": {
+        "song_title": "39 Intro",
+        "song_slug": "39-intro",
+        "song_duration": "00:06:06",
+        "artists": [
+            1
+        ]
+    }
+},
+{
+    "model": "beatemplate.song",
+    "pk": 12,
+    "fields": {
+        "song_title": "The Fall-Off is Inevitable",
+        "song_slug": "the-fall-off-is-inevitable",
+        "song_duration": "00:02:56",
+        "artists": [
+            1
+        ]
+    }
+},
+{
+    "model": "beatemplate.song",
+    "pk": 13,
+    "fields": {
+        "song_title": "The Villest",
+        "song_slug": "the-villest",
+        "song_duration": "00:04:30",
+        "artists": [
+            1,
+            5
+        ]
+    }
+},
+{
+    "model": "beatemplate.song",
+    "pk": 14,
+    "fields": {
+        "song_title": "Old Dog",
+        "song_slug": "old-dog",
+        "song_duration": "00:03:22",
+        "artists": [
+            6,
+            1
+        ]
+    }
+},
+{
+    "model": "beatemplate.song",
+    "pk": 15,
+    "fields": {
+        "song_title": "Life Sentence",
+        "song_slug": "life-sentence",
+        "song_duration": "00:04:12",
+        "artists": [
+            1
+        ]
+    }
+},
+{
+    "model": "beatemplate.song",
+    "pk": 16,
+    "fields": {
+        "song_title": "Only You",
+        "song_slug": "only-you",
+        "song_duration": "00:04:46",
+        "artists": [
+            1,
+            7
+        ]
+    }
+},
+{
+    "model": "beatemplate.song",
+    "pk": 17,
+    "fields": {
+        "song_title": "Man Up Above",
+        "song_slug": "man-up-above",
+        "song_duration": "00:04:58",
+        "artists": [
+            1
+        ]
+    }
+},
+{
+    "model": "beatemplate.song",
+    "pk": 18,
+    "fields": {
+        "song_title": "I Love Her Again",
+        "song_slug": "i-love-her-again",
+        "song_duration": "00:05:32",
+        "artists": [
+            1
+        ]
+    }
+},
+{
+    "model": "beatemplate.song",
+    "pk": 19,
+    "fields": {
+        "song_title": "What If",
+        "song_slug": "what-if",
+        "song_duration": "00:05:19",
+        "artists": [
+            8,
+            1
+        ]
+    }
+},
+{
+    "model": "beatemplate.song",
+    "pk": 20,
+    "fields": {
+        "song_title": "Quick Stop",
+        "song_slug": "quick-stop",
+        "song_duration": "00:04:24",
+        "artists": [
+            1
+        ]
+    }
+},
+{
+    "model": "beatemplate.song",
+    "pk": 21,
+    "fields": {
+        "song_title": "and the whole world is the Ville",
+        "song_slug": "and-the-whole-world-is-the-ville",
+        "song_duration": "00:04:35",
+        "artists": [
+            1
+        ]
+    }
+},
+{
+    "model": "beatemplate.song",
+    "pk": 22,
+    "fields": {
+        "song_title": "Ocean Way (Bonus)",
+        "song_slug": "ocean-way-bonus",
+        "song_duration": "00:02:34",
+        "artists": [
+            1
+        ]
+    }
+},
+{
+    "model": "beatemplate.releasesong",
+    "pk": 1,
+    "fields": {
+        "release": 1,
+        "song": 1,
+        "track_number": 1,
+        "disc_title": "Disc 29"
+    }
+},
+{
+    "model": "beatemplate.releasesong",
+    "pk": 2,
+    "fields": {
+        "release": 1,
+        "song": 2,
+        "track_number": 2,
+        "disc_title": "Disc 29"
+    }
+},
+{
+    "model": "beatemplate.releasesong",
+    "pk": 3,
+    "fields": {
+        "release": 1,
+        "song": 3,
+        "track_number": 3,
+        "disc_title": "Disc 29"
+    }
+},
+{
+    "model": "beatemplate.releasesong",
+    "pk": 4,
+    "fields": {
+        "release": 1,
+        "song": 4,
+        "track_number": 4,
+        "disc_title": "Disc 29"
+    }
+},
+{
+    "model": "beatemplate.releasesong",
+    "pk": 5,
+    "fields": {
+        "release": 1,
+        "song": 5,
+        "track_number": 5,
+        "disc_title": "Disc 29"
+    }
+},
+{
+    "model": "beatemplate.releasesong",
+    "pk": 6,
+    "fields": {
+        "release": 1,
+        "song": 6,
+        "track_number": 6,
+        "disc_title": "Disc 29"
+    }
+},
+{
+    "model": "beatemplate.releasesong",
+    "pk": 7,
+    "fields": {
+        "release": 1,
+        "song": 7,
+        "track_number": 7,
+        "disc_title": "Disc 29"
+    }
+},
+{
+    "model": "beatemplate.releasesong",
+    "pk": 8,
+    "fields": {
+        "release": 1,
+        "song": 8,
+        "track_number": 8,
+        "disc_title": "Disc 29"
+    }
+},
+{
+    "model": "beatemplate.releasesong",
+    "pk": 9,
+    "fields": {
+        "release": 1,
+        "song": 9,
+        "track_number": 9,
+        "disc_title": "Disc 29"
+    }
+},
+{
+    "model": "beatemplate.releasesong",
+    "pk": 10,
+    "fields": {
+        "release": 1,
+        "song": 10,
+        "track_number": 10,
+        "disc_title": "Disc 29"
+    }
+},
+{
+    "model": "beatemplate.releasesong",
+    "pk": 11,
+    "fields": {
+        "release": 1,
+        "song": 11,
+        "track_number": 1,
+        "disc_title": "Disc 39"
+    }
+},
+{
+    "model": "beatemplate.releasesong",
+    "pk": 12,
+    "fields": {
+        "release": 1,
+        "song": 12,
+        "track_number": 2,
+        "disc_title": "Disc 39"
+    }
+},
+{
+    "model": "beatemplate.releasesong",
+    "pk": 13,
+    "fields": {
+        "release": 1,
+        "song": 13,
+        "track_number": 3,
+        "disc_title": "Disc 39"
+    }
+},
+{
+    "model": "beatemplate.releasesong",
+    "pk": 14,
+    "fields": {
+        "release": 1,
+        "song": 14,
+        "track_number": 4,
+        "disc_title": "Disc 39"
+    }
+},
+{
+    "model": "beatemplate.releasesong",
+    "pk": 15,
+    "fields": {
+        "release": 1,
+        "song": 15,
+        "track_number": 5,
+        "disc_title": "Disc 39"
+    }
+},
+{
+    "model": "beatemplate.releasesong",
+    "pk": 16,
+    "fields": {
+        "release": 1,
+        "song": 16,
+        "track_number": 6,
+        "disc_title": "Disc 39"
+    }
+},
+{
+    "model": "beatemplate.releasesong",
+    "pk": 17,
+    "fields": {
+        "release": 1,
+        "song": 17,
+        "track_number": 7,
+        "disc_title": "Disc 39"
+    }
+},
+{
+    "model": "beatemplate.releasesong",
+    "pk": 18,
+    "fields": {
+        "release": 1,
+        "song": 18,
+        "track_number": 8,
+        "disc_title": "Disc 39"
+    }
+},
+{
+    "model": "beatemplate.releasesong",
+    "pk": 19,
+    "fields": {
+        "release": 1,
+        "song": 19,
+        "track_number": 9,
+        "disc_title": "Disc 39"
+    }
+},
+{
+    "model": "beatemplate.releasesong",
+    "pk": 20,
+    "fields": {
+        "release": 1,
+        "song": 20,
+        "track_number": 10,
+        "disc_title": "Disc 39"
+    }
+},
+{
+    "model": "beatemplate.releasesong",
+    "pk": 21,
+    "fields": {
+        "release": 1,
+        "song": 21,
+        "track_number": 11,
+        "disc_title": "Disc 39"
+    }
+},
+{
+    "model": "beatemplate.releasesong",
+    "pk": 22,
+    "fields": {
+        "release": 1,
+        "song": 22,
+        "track_number": 12,
+        "disc_title": "Disc 39"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "app_label": "beatemplate",
+        "model": "artist"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "app_label": "beatemplate",
+        "model": "release"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "app_label": "beatemplate",
+        "model": "song"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "app_label": "beatemplate",
+        "model": "releasesong"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "app_label": "beatemplate",
+        "model": "playlist"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "app_label": "admin",
+        "model": "logentry"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "app_label": "auth",
+        "model": "permission"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "app_label": "auth",
+        "model": "group"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "app_label": "auth",
+        "model": "user"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "app_label": "contenttypes",
+        "model": "contenttype"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "app_label": "sessions",
+        "model": "session"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "app_label": "taggit",
+        "model": "tag"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "app_label": "taggit",
+        "model": "taggeditem"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "app_label": "beatemplate",
+        "model": "playlistsong"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "app_label": "django_tomselect",
+        "model": "emptymodel"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "140t3j4mvwpryc65nayacaxmpidjkj89",
+    "fields": {
+        "session_data": ".eJxVjEsOAiEQBe_C2hDaBqFduvcMpPnJqIFkmFkZ766TzEK3r6reS3hel-rXkWc_JXEWIA6_W-D4yG0D6c7t1mXsbZmnIDdF7nTIa0_5edndv4PKo35rBBURSoRiwAI5p0kpnckp55gSFtYQ8ISUlDlqYESigjZZ0FqFbMT7A6mCNlM:1wP1VR:oD5fxmllY39J7jzAVOdkMB-C_zCoUn43cajhg2qnSAk",
+        "expire_date": "2026-06-01T17:11:53.929Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "owh9umjf0pqyxqutnpnzd15c220uwvbc",
+    "fields": {
+        "session_data": ".eJxVjLsOwjAMAP_FM4pinJC4IzvfEDkvUkCt1LQT4t9RpQ6w3p3uDUG2tYWtlyWMGQZAOP2yKOlZpl3kh0z3WaV5Wpcxqj1Rh-3qNufyuh7t36BJbzAAoU6ENWG16JC9N6y1Key198KZqhiMdCHO2p4NChFzJZcdGqNjsfD5AqmCNlM:1wTMFv:R31-PxcuGJnK_CctJWtHp9Ru7V6OteSlWeh1CYKwlMg",
+        "expire_date": "2026-06-13T16:09:47.450Z"
+    }
+},
+{
+    "model": "taggit.tag",
+    "fields": {
+        "name": "Rap",
+        "slug": "rap"
+    }
+},
+{
+    "model": "taggit.tag",
+    "fields": {
+        "name": "R&B",
+        "slug": "rb"
+    }
+},
+{
+    "model": "taggit.tag",
+    "fields": {
+        "name": "Jazz",
+        "slug": "jazz"
+    }
+},
+{
+    "model": "taggit.tag",
+    "fields": {
+        "name": "Blues",
+        "slug": "blues"
+    }
+},
+{
+    "model": "taggit.taggeditem",
+    "fields": {
+        "tag": [
+            "Rap"
+        ],
+        "content_type": [
+            "beatemplate",
+            "song"
+        ],
+        "object_id": 1
+    }
+},
+{
+    "model": "taggit.taggeditem",
+    "fields": {
+        "tag": [
+            "Rap"
+        ],
+        "content_type": [
+            "beatemplate",
+            "song"
+        ],
+        "object_id": 2
+    }
+},
+{
+    "model": "taggit.taggeditem",
+    "fields": {
+        "tag": [
+            "Rap"
+        ],
+        "content_type": [
+            "beatemplate",
+            "song"
+        ],
+        "object_id": 3
+    }
+},
+{
+    "model": "taggit.taggeditem",
+    "fields": {
+        "tag": [
+            "Rap"
+        ],
+        "content_type": [
+            "beatemplate",
+            "song"
+        ],
+        "object_id": 4
+    }
+},
+{
+    "model": "taggit.taggeditem",
+    "fields": {
+        "tag": [
+            "Rap"
+        ],
+        "content_type": [
+            "beatemplate",
+            "song"
+        ],
+        "object_id": 5
+    }
+},
+{
+    "model": "taggit.taggeditem",
+    "fields": {
+        "tag": [
+            "Rap"
+        ],
+        "content_type": [
+            "beatemplate",
+            "song"
+        ],
+        "object_id": 6
+    }
+},
+{
+    "model": "taggit.taggeditem",
+    "fields": {
+        "tag": [
+            "Blues"
+        ],
+        "content_type": [
+            "beatemplate",
+            "song"
+        ],
+        "object_id": 7
+    }
+},
+{
+    "model": "taggit.taggeditem",
+    "fields": {
+        "tag": [
+            "Rap"
+        ],
+        "content_type": [
+            "beatemplate",
+            "song"
+        ],
+        "object_id": 7
+    }
+},
+{
+    "model": "taggit.taggeditem",
+    "fields": {
+        "tag": [
+            "Rap"
+        ],
+        "content_type": [
+            "beatemplate",
+            "song"
+        ],
+        "object_id": 8
+    }
+},
+{
+    "model": "taggit.taggeditem",
+    "fields": {
+        "tag": [
+            "Rap"
+        ],
+        "content_type": [
+            "beatemplate",
+            "song"
+        ],
+        "object_id": 9
+    }
+},
+{
+    "model": "taggit.taggeditem",
+    "fields": {
+        "tag": [
+            "Rap"
+        ],
+        "content_type": [
+            "beatemplate",
+            "song"
+        ],
+        "object_id": 10
+    }
+},
+{
+    "model": "taggit.taggeditem",
+    "fields": {
+        "tag": [
+            "Rap"
+        ],
+        "content_type": [
+            "beatemplate",
+            "song"
+        ],
+        "object_id": 11
+    }
+},
+{
+    "model": "taggit.taggeditem",
+    "fields": {
+        "tag": [
+            "Rap"
+        ],
+        "content_type": [
+            "beatemplate",
+            "song"
+        ],
+        "object_id": 12
+    }
+},
+{
+    "model": "taggit.taggeditem",
+    "fields": {
+        "tag": [
+            "R&B"
+        ],
+        "content_type": [
+            "beatemplate",
+            "song"
+        ],
+        "object_id": 13
+    }
+},
+{
+    "model": "taggit.taggeditem",
+    "fields": {
+        "tag": [
+            "Rap"
+        ],
+        "content_type": [
+            "beatemplate",
+            "song"
+        ],
+        "object_id": 13
+    }
+},
+{
+    "model": "taggit.taggeditem",
+    "fields": {
+        "tag": [
+            "Rap"
+        ],
+        "content_type": [
+            "beatemplate",
+            "song"
+        ],
+        "object_id": 14
+    }
+},
+{
+    "model": "taggit.taggeditem",
+    "fields": {
+        "tag": [
+            "Rap"
+        ],
+        "content_type": [
+            "beatemplate",
+            "song"
+        ],
+        "object_id": 15
+    }
+},
+{
+    "model": "taggit.taggeditem",
+    "fields": {
+        "tag": [
+            "Rap"
+        ],
+        "content_type": [
+            "beatemplate",
+            "song"
+        ],
+        "object_id": 16
+    }
+},
+{
+    "model": "taggit.taggeditem",
+    "fields": {
+        "tag": [
+            "R&B"
+        ],
+        "content_type": [
+            "beatemplate",
+            "song"
+        ],
+        "object_id": 16
+    }
+},
+{
+    "model": "taggit.taggeditem",
+    "fields": {
+        "tag": [
+            "Rap"
+        ],
+        "content_type": [
+            "beatemplate",
+            "song"
+        ],
+        "object_id": 17
+    }
+},
+{
+    "model": "taggit.taggeditem",
+    "fields": {
+        "tag": [
+            "Rap"
+        ],
+        "content_type": [
+            "beatemplate",
+            "song"
+        ],
+        "object_id": 18
+    }
+},
+{
+    "model": "taggit.taggeditem",
+    "fields": {
+        "tag": [
+            "Rap"
+        ],
+        "content_type": [
+            "beatemplate",
+            "song"
+        ],
+        "object_id": 19
+    }
+},
+{
+    "model": "taggit.taggeditem",
+    "fields": {
+        "tag": [
+            "Rap"
+        ],
+        "content_type": [
+            "beatemplate",
+            "song"
+        ],
+        "object_id": 20
+    }
+},
+{
+    "model": "taggit.taggeditem",
+    "fields": {
+        "tag": [
+            "Rap"
+        ],
+        "content_type": [
+            "beatemplate",
+            "song"
+        ],
+        "object_id": 21
+    }
+},
+{
+    "model": "taggit.taggeditem",
+    "fields": {
+        "tag": [
+            "Rap"
+        ],
+        "content_type": [
+            "beatemplate",
+            "song"
+        ],
+        "object_id": 22
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can add Artista",
+        "content_type": [
+            "beatemplate",
+            "artist"
+        ],
+        "codename": "add_artist"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can change Artista",
+        "content_type": [
+            "beatemplate",
+            "artist"
+        ],
+        "codename": "change_artist"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can delete Artista",
+        "content_type": [
+            "beatemplate",
+            "artist"
+        ],
+        "codename": "delete_artist"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can view Artista",
+        "content_type": [
+            "beatemplate",
+            "artist"
+        ],
+        "codename": "view_artist"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can add Lanzamiento",
+        "content_type": [
+            "beatemplate",
+            "release"
+        ],
+        "codename": "add_release"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can change Lanzamiento",
+        "content_type": [
+            "beatemplate",
+            "release"
+        ],
+        "codename": "change_release"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can delete Lanzamiento",
+        "content_type": [
+            "beatemplate",
+            "release"
+        ],
+        "codename": "delete_release"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can view Lanzamiento",
+        "content_type": [
+            "beatemplate",
+            "release"
+        ],
+        "codename": "view_release"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can add Canción",
+        "content_type": [
+            "beatemplate",
+            "song"
+        ],
+        "codename": "add_song"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can change Canción",
+        "content_type": [
+            "beatemplate",
+            "song"
+        ],
+        "codename": "change_song"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can delete Canción",
+        "content_type": [
+            "beatemplate",
+            "song"
+        ],
+        "codename": "delete_song"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can view Canción",
+        "content_type": [
+            "beatemplate",
+            "song"
+        ],
+        "codename": "view_song"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can add Canción",
+        "content_type": [
+            "beatemplate",
+            "releasesong"
+        ],
+        "codename": "add_releasesong"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can change Canción",
+        "content_type": [
+            "beatemplate",
+            "releasesong"
+        ],
+        "codename": "change_releasesong"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can delete Canción",
+        "content_type": [
+            "beatemplate",
+            "releasesong"
+        ],
+        "codename": "delete_releasesong"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can view Canción",
+        "content_type": [
+            "beatemplate",
+            "releasesong"
+        ],
+        "codename": "view_releasesong"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can add Playlist",
+        "content_type": [
+            "beatemplate",
+            "playlist"
+        ],
+        "codename": "add_playlist"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can change Playlist",
+        "content_type": [
+            "beatemplate",
+            "playlist"
+        ],
+        "codename": "change_playlist"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can delete Playlist",
+        "content_type": [
+            "beatemplate",
+            "playlist"
+        ],
+        "codename": "delete_playlist"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can view Playlist",
+        "content_type": [
+            "beatemplate",
+            "playlist"
+        ],
+        "codename": "view_playlist"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can add log entry",
+        "content_type": [
+            "admin",
+            "logentry"
+        ],
+        "codename": "add_logentry"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can change log entry",
+        "content_type": [
+            "admin",
+            "logentry"
+        ],
+        "codename": "change_logentry"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can delete log entry",
+        "content_type": [
+            "admin",
+            "logentry"
+        ],
+        "codename": "delete_logentry"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can view log entry",
+        "content_type": [
+            "admin",
+            "logentry"
+        ],
+        "codename": "view_logentry"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can add permission",
+        "content_type": [
+            "auth",
+            "permission"
+        ],
+        "codename": "add_permission"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can change permission",
+        "content_type": [
+            "auth",
+            "permission"
+        ],
+        "codename": "change_permission"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can delete permission",
+        "content_type": [
+            "auth",
+            "permission"
+        ],
+        "codename": "delete_permission"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can view permission",
+        "content_type": [
+            "auth",
+            "permission"
+        ],
+        "codename": "view_permission"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can add group",
+        "content_type": [
+            "auth",
+            "group"
+        ],
+        "codename": "add_group"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can change group",
+        "content_type": [
+            "auth",
+            "group"
+        ],
+        "codename": "change_group"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can delete group",
+        "content_type": [
+            "auth",
+            "group"
+        ],
+        "codename": "delete_group"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can view group",
+        "content_type": [
+            "auth",
+            "group"
+        ],
+        "codename": "view_group"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can add user",
+        "content_type": [
+            "auth",
+            "user"
+        ],
+        "codename": "add_user"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can change user",
+        "content_type": [
+            "auth",
+            "user"
+        ],
+        "codename": "change_user"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can delete user",
+        "content_type": [
+            "auth",
+            "user"
+        ],
+        "codename": "delete_user"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can view user",
+        "content_type": [
+            "auth",
+            "user"
+        ],
+        "codename": "view_user"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can add content type",
+        "content_type": [
+            "contenttypes",
+            "contenttype"
+        ],
+        "codename": "add_contenttype"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can change content type",
+        "content_type": [
+            "contenttypes",
+            "contenttype"
+        ],
+        "codename": "change_contenttype"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can delete content type",
+        "content_type": [
+            "contenttypes",
+            "contenttype"
+        ],
+        "codename": "delete_contenttype"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can view content type",
+        "content_type": [
+            "contenttypes",
+            "contenttype"
+        ],
+        "codename": "view_contenttype"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can add session",
+        "content_type": [
+            "sessions",
+            "session"
+        ],
+        "codename": "add_session"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can change session",
+        "content_type": [
+            "sessions",
+            "session"
+        ],
+        "codename": "change_session"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can delete session",
+        "content_type": [
+            "sessions",
+            "session"
+        ],
+        "codename": "delete_session"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can view session",
+        "content_type": [
+            "sessions",
+            "session"
+        ],
+        "codename": "view_session"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can add tag",
+        "content_type": [
+            "taggit",
+            "tag"
+        ],
+        "codename": "add_tag"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can change tag",
+        "content_type": [
+            "taggit",
+            "tag"
+        ],
+        "codename": "change_tag"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can delete tag",
+        "content_type": [
+            "taggit",
+            "tag"
+        ],
+        "codename": "delete_tag"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can view tag",
+        "content_type": [
+            "taggit",
+            "tag"
+        ],
+        "codename": "view_tag"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can add tagged item",
+        "content_type": [
+            "taggit",
+            "taggeditem"
+        ],
+        "codename": "add_taggeditem"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can change tagged item",
+        "content_type": [
+            "taggit",
+            "taggeditem"
+        ],
+        "codename": "change_taggeditem"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can delete tagged item",
+        "content_type": [
+            "taggit",
+            "taggeditem"
+        ],
+        "codename": "delete_taggeditem"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can view tagged item",
+        "content_type": [
+            "taggit",
+            "taggeditem"
+        ],
+        "codename": "view_taggeditem"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can add Canción",
+        "content_type": [
+            "beatemplate",
+            "playlistsong"
+        ],
+        "codename": "add_playlistsong"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can change Canción",
+        "content_type": [
+            "beatemplate",
+            "playlistsong"
+        ],
+        "codename": "change_playlistsong"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can delete Canción",
+        "content_type": [
+            "beatemplate",
+            "playlistsong"
+        ],
+        "codename": "delete_playlistsong"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can view Canción",
+        "content_type": [
+            "beatemplate",
+            "playlistsong"
+        ],
+        "codename": "view_playlistsong"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can add Empty Model",
+        "content_type": [
+            "django_tomselect",
+            "emptymodel"
+        ],
+        "codename": "add_emptymodel"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can change Empty Model",
+        "content_type": [
+            "django_tomselect",
+            "emptymodel"
+        ],
+        "codename": "change_emptymodel"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can delete Empty Model",
+        "content_type": [
+            "django_tomselect",
+            "emptymodel"
+        ],
+        "codename": "delete_emptymodel"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can view Empty Model",
+        "content_type": [
+            "django_tomselect",
+            "emptymodel"
+        ],
+        "codename": "view_emptymodel"
+    }
+},
+{
+    "model": "auth.user",
+    "fields": {
+        "password": "pbkdf2_sha256$1000000$3QETHU8NHtX6TZwwg6Iki2$7NelZNFhIK8Wy229ZExy8MFYTRTjgBqzMW+VV3JAW0Y=",
+        "last_login": "2026-05-30T16:09:47.430Z",
+        "is_superuser": true,
+        "username": "grupo7",
+        "first_name": "",
+        "last_name": "",
+        "email": "grupo7@gmail.com",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2026-05-17T11:55:09.506Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 1,
+    "fields": {
+        "action_time": "2026-05-17T11:55:54.037Z",
+        "user": [
+            "grupo7"
+        ],
+        "content_type": [
+            "beatemplate",
+            "artist"
+        ],
+        "object_id": "1",
+        "object_repr": "J. Cole",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 2,
+    "fields": {
+        "action_time": "2026-05-17T11:56:08.462Z",
+        "user": [
+            "grupo7"
+        ],
+        "content_type": [
+            "taggit",
+            "tag"
+        ],
+        "object_id": "1",
+        "object_repr": "Rap",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 3,
+    "fields": {
+        "action_time": "2026-05-17T11:56:21.477Z",
+        "user": [
+            "grupo7"
+        ],
+        "content_type": [
+            "taggit",
+            "tag"
+        ],
+        "object_id": "2",
+        "object_repr": "R&B",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 4,
+    "fields": {
+        "action_time": "2026-05-17T11:56:27.583Z",
+        "user": [
+            "grupo7"
+        ],
+        "content_type": [
+            "taggit",
+            "tag"
+        ],
+        "object_id": "3",
+        "object_repr": "Jazz",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 5,
+    "fields": {
+        "action_time": "2026-05-17T11:59:52.858Z",
+        "user": [
+            "grupo7"
+        ],
+        "content_type": [
+            "beatemplate",
+            "song"
+        ],
+        "object_id": "1",
+        "object_repr": "29 Intro",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 6,
+    "fields": {
+        "action_time": "2026-05-17T12:01:24.866Z",
+        "user": [
+            "grupo7"
+        ],
+        "content_type": [
+            "beatemplate",
+            "song"
+        ],
+        "object_id": "2",
+        "object_repr": "Two Three",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 7,
+    "fields": {
+        "action_time": "2026-05-17T12:01:53.573Z",
+        "user": [
+            "grupo7"
+        ],
+        "content_type": [
+            "beatemplate",
+            "release"
+        ],
+        "object_id": "1",
+        "object_repr": "The Fall Off",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"Canci\\u00f3n\", \"object\": \"ReleaseSong object (1)\"}}, {\"added\": {\"name\": \"Canci\\u00f3n\", \"object\": \"ReleaseSong object (2)\"}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 8,
+    "fields": {
+        "action_time": "2026-05-17T12:02:37.728Z",
+        "user": [
+            "grupo7"
+        ],
+        "content_type": [
+            "beatemplate",
+            "release"
+        ],
+        "object_id": "1",
+        "object_repr": "The Fall Off",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"name\": \"Canci\\u00f3n\", \"object\": \"ReleaseSong object (2)\", \"fields\": [\"Track number\", \"Disc title\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 9,
+    "fields": {
+        "action_time": "2026-05-17T12:04:02.172Z",
+        "user": [
+            "grupo7"
+        ],
+        "content_type": [
+            "taggit",
+            "tag"
+        ],
+        "object_id": "4",
+        "object_repr": "Blues",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 10,
+    "fields": {
+        "action_time": "2026-05-17T12:06:06.350Z",
+        "user": [
+            "grupo7"
+        ],
+        "content_type": [
+            "beatemplate",
+            "song"
+        ],
+        "object_id": "3",
+        "object_repr": "SAFETY",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 11,
+    "fields": {
+        "action_time": "2026-05-17T12:06:42.057Z",
+        "user": [
+            "grupo7"
+        ],
+        "content_type": [
+            "beatemplate",
+            "artist"
+        ],
+        "object_id": "2",
+        "object_repr": "Future",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 12,
+    "fields": {
+        "action_time": "2026-05-17T12:07:01.621Z",
+        "user": [
+            "grupo7"
+        ],
+        "content_type": [
+            "beatemplate",
+            "song"
+        ],
+        "object_id": "4",
+        "object_repr": "Run A Train",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 13,
+    "fields": {
+        "action_time": "2026-05-17T12:07:43.468Z",
+        "user": [
+            "grupo7"
+        ],
+        "content_type": [
+            "beatemplate",
+            "artist"
+        ],
+        "object_id": "3",
+        "object_repr": "Tems",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 14,
+    "fields": {
+        "action_time": "2026-05-17T12:08:31.915Z",
+        "user": [
+            "grupo7"
+        ],
+        "content_type": [
+            "beatemplate",
+            "song"
+        ],
+        "object_id": "5",
+        "object_repr": "Poor Thang",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 15,
+    "fields": {
+        "action_time": "2026-05-17T12:08:52.957Z",
+        "user": [
+            "grupo7"
+        ],
+        "content_type": [
+            "beatemplate",
+            "artist"
+        ],
+        "object_id": "4",
+        "object_repr": "PJ",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 16,
+    "fields": {
+        "action_time": "2026-05-17T12:09:07.198Z",
+        "user": [
+            "grupo7"
+        ],
+        "content_type": [
+            "beatemplate",
+            "song"
+        ],
+        "object_id": "6",
+        "object_repr": "Legacy",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 17,
+    "fields": {
+        "action_time": "2026-05-17T12:09:45.710Z",
+        "user": [
+            "grupo7"
+        ],
+        "content_type": [
+            "beatemplate",
+            "song"
+        ],
+        "object_id": "7",
+        "object_repr": "Bunce Road Blues",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 18,
+    "fields": {
+        "action_time": "2026-05-17T12:11:00.988Z",
+        "user": [
+            "grupo7"
+        ],
+        "content_type": [
+            "beatemplate",
+            "song"
+        ],
+        "object_id": "8",
+        "object_repr": "WHO TF IZ U",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 19,
+    "fields": {
+        "action_time": "2026-05-17T12:11:57.276Z",
+        "user": [
+            "grupo7"
+        ],
+        "content_type": [
+            "beatemplate",
+            "song"
+        ],
+        "object_id": "9",
+        "object_repr": "Bombs in the Ville/Hit the Gas",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 20,
+    "fields": {
+        "action_time": "2026-05-17T12:13:19.809Z",
+        "user": [
+            "grupo7"
+        ],
+        "content_type": [
+            "beatemplate",
+            "song"
+        ],
+        "object_id": "10",
+        "object_repr": "Lonely at the Top",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 21,
+    "fields": {
+        "action_time": "2026-05-17T12:14:08.382Z",
+        "user": [
+            "grupo7"
+        ],
+        "content_type": [
+            "beatemplate",
+            "song"
+        ],
+        "object_id": "11",
+        "object_repr": "39 Intro",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 22,
+    "fields": {
+        "action_time": "2026-05-17T12:15:12.129Z",
+        "user": [
+            "grupo7"
+        ],
+        "content_type": [
+            "beatemplate",
+            "song"
+        ],
+        "object_id": "12",
+        "object_repr": "The Fall-Off is Inevitable",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 23,
+    "fields": {
+        "action_time": "2026-05-17T12:15:43.885Z",
+        "user": [
+            "grupo7"
+        ],
+        "content_type": [
+            "beatemplate",
+            "artist"
+        ],
+        "object_id": "5",
+        "object_repr": "Erykah Badu",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 24,
+    "fields": {
+        "action_time": "2026-05-17T12:16:05.172Z",
+        "user": [
+            "grupo7"
+        ],
+        "content_type": [
+            "beatemplate",
+            "song"
+        ],
+        "object_id": "13",
+        "object_repr": "The Villest",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 25,
+    "fields": {
+        "action_time": "2026-05-17T12:16:42.447Z",
+        "user": [
+            "grupo7"
+        ],
+        "content_type": [
+            "beatemplate",
+            "artist"
+        ],
+        "object_id": "6",
+        "object_repr": "Petey Pablo",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 26,
+    "fields": {
+        "action_time": "2026-05-17T12:17:02.211Z",
+        "user": [
+            "grupo7"
+        ],
+        "content_type": [
+            "beatemplate",
+            "song"
+        ],
+        "object_id": "14",
+        "object_repr": "Old Dog",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 27,
+    "fields": {
+        "action_time": "2026-05-17T12:17:32.735Z",
+        "user": [
+            "grupo7"
+        ],
+        "content_type": [
+            "beatemplate",
+            "song"
+        ],
+        "object_id": "15",
+        "object_repr": "Life Sentence",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 28,
+    "fields": {
+        "action_time": "2026-05-17T12:18:04.980Z",
+        "user": [
+            "grupo7"
+        ],
+        "content_type": [
+            "beatemplate",
+            "artist"
+        ],
+        "object_id": "7",
+        "object_repr": "Burna Boy",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 29,
+    "fields": {
+        "action_time": "2026-05-17T12:19:05.473Z",
+        "user": [
+            "grupo7"
+        ],
+        "content_type": [
+            "beatemplate",
+            "song"
+        ],
+        "object_id": "16",
+        "object_repr": "Only You",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 30,
+    "fields": {
+        "action_time": "2026-05-17T12:19:35.308Z",
+        "user": [
+            "grupo7"
+        ],
+        "content_type": [
+            "beatemplate",
+            "song"
+        ],
+        "object_id": "16",
+        "object_repr": "Only You",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Tags\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 31,
+    "fields": {
+        "action_time": "2026-05-17T12:20:03.647Z",
+        "user": [
+            "grupo7"
+        ],
+        "content_type": [
+            "beatemplate",
+            "song"
+        ],
+        "object_id": "17",
+        "object_repr": "Man Up Above",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 32,
+    "fields": {
+        "action_time": "2026-05-17T12:20:33.199Z",
+        "user": [
+            "grupo7"
+        ],
+        "content_type": [
+            "beatemplate",
+            "song"
+        ],
+        "object_id": "18",
+        "object_repr": "I Love Her Again",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 33,
+    "fields": {
+        "action_time": "2026-05-17T12:20:49.076Z",
+        "user": [
+            "grupo7"
+        ],
+        "content_type": [
+            "beatemplate",
+            "artist"
+        ],
+        "object_id": "8",
+        "object_repr": "Morray",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 34,
+    "fields": {
+        "action_time": "2026-05-17T12:21:25.055Z",
+        "user": [
+            "grupo7"
+        ],
+        "content_type": [
+            "beatemplate",
+            "song"
+        ],
+        "object_id": "19",
+        "object_repr": "What If",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 35,
+    "fields": {
+        "action_time": "2026-05-17T12:21:44.931Z",
+        "user": [
+            "grupo7"
+        ],
+        "content_type": [
+            "beatemplate",
+            "song"
+        ],
+        "object_id": "20",
+        "object_repr": "Quick Stop",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 36,
+    "fields": {
+        "action_time": "2026-05-17T12:22:20.853Z",
+        "user": [
+            "grupo7"
+        ],
+        "content_type": [
+            "beatemplate",
+            "song"
+        ],
+        "object_id": "21",
+        "object_repr": "and the whole world is the Ville",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 37,
+    "fields": {
+        "action_time": "2026-05-17T12:22:43.897Z",
+        "user": [
+            "grupo7"
+        ],
+        "content_type": [
+            "beatemplate",
+            "song"
+        ],
+        "object_id": "22",
+        "object_repr": "Ocean Way (Bonus)",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 38,
+    "fields": {
+        "action_time": "2026-05-17T12:23:14.542Z",
+        "user": [
+            "grupo7"
+        ],
+        "content_type": [
+            "beatemplate",
+            "release"
+        ],
+        "object_id": "1",
+        "object_repr": "The Fall Off",
+        "action_flag": 2,
+        "change_message": "[{\"added\": {\"name\": \"Canci\\u00f3n\", \"object\": \"ReleaseSong object (3)\"}}, {\"added\": {\"name\": \"Canci\\u00f3n\", \"object\": \"ReleaseSong object (4)\"}}, {\"added\": {\"name\": \"Canci\\u00f3n\", \"object\": \"ReleaseSong object (5)\"}}, {\"added\": {\"name\": \"Canci\\u00f3n\", \"object\": \"ReleaseSong object (6)\"}}, {\"added\": {\"name\": \"Canci\\u00f3n\", \"object\": \"ReleaseSong object (7)\"}}, {\"added\": {\"name\": \"Canci\\u00f3n\", \"object\": \"ReleaseSong object (8)\"}}, {\"added\": {\"name\": \"Canci\\u00f3n\", \"object\": \"ReleaseSong object (9)\"}}, {\"added\": {\"name\": \"Canci\\u00f3n\", \"object\": \"ReleaseSong object (10)\"}}, {\"added\": {\"name\": \"Canci\\u00f3n\", \"object\": \"ReleaseSong object (11)\"}}, {\"added\": {\"name\": \"Canci\\u00f3n\", \"object\": \"ReleaseSong object (12)\"}}, {\"added\": {\"name\": \"Canci\\u00f3n\", \"object\": \"ReleaseSong object (13)\"}}, {\"added\": {\"name\": \"Canci\\u00f3n\", \"object\": \"ReleaseSong object (14)\"}}, {\"added\": {\"name\": \"Canci\\u00f3n\", \"object\": \"ReleaseSong object (15)\"}}, {\"added\": {\"name\": \"Canci\\u00f3n\", \"object\": \"ReleaseSong object (16)\"}}, {\"added\": {\"name\": \"Canci\\u00f3n\", \"object\": \"ReleaseSong object (17)\"}}, {\"added\": {\"name\": \"Canci\\u00f3n\", \"object\": \"ReleaseSong object (18)\"}}, {\"added\": {\"name\": \"Canci\\u00f3n\", \"object\": \"ReleaseSong object (19)\"}}, {\"added\": {\"name\": \"Canci\\u00f3n\", \"object\": \"ReleaseSong object (20)\"}}, {\"added\": {\"name\": \"Canci\\u00f3n\", \"object\": \"ReleaseSong object (21)\"}}, {\"added\": {\"name\": \"Canci\\u00f3n\", \"object\": \"ReleaseSong object (22)\"}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 39,
+    "fields": {
+        "action_time": "2026-05-18T17:12:52.742Z",
+        "user": [
+            "grupo7"
+        ],
+        "content_type": [
+            "beatemplate",
+            "artist"
+        ],
+        "object_id": "9",
+        "object_repr": "David Guetta",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+}
+]

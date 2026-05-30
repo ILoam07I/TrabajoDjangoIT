@@ -2,192 +2,128 @@ name: it-prod
 
 services:
 
-# ==========================================
+  # ==========================================
+  # BLOQUE 1: PROYECTO BEATEMPLATE
+  # ==========================================
 
-# BLOQUE 1: PROYECTO BLOG
+  db-beatemplate:
+    image: postgres:18
 
-# ==========================================
+    restart: always
 
-db-blog:
+    volumes:
+      - beatemplate_postgres_data:/var/lib/postgresql/data
 
-image: postgres:18
+    env_file:
+      - .env
 
-restart: always
+    environment:
+      - POSTGRES_DB=${POSTGRES_DB_BEATEMPLATE}
+      - POSTGRES_USER=${POSTGRES_USER_BEATEMPLATE}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD_BEATEMPLATE}
+      - PGDATA=/var/lib/postgresql/data/pgdata
 
-volumes:
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER_BEATEMPLATE} -d ${POSTGRES_DB_BEATEMPLATE}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
 
-- blog_postgres_data:/var/lib/postgresql/data
+  web-beatemplate:
+    build: ./TrabajoDjangoIT
 
-env_file:
+    command: >
+      sh -c "python manage.py collectstatic --noinput &&
+      python manage.py migrate &&
+      gunicorn trabajo_it.wsgi:application --bind 0.0.0.0:8000"
 
-- .env
+    volumes:
+      - ./TrabajoDjangoIT:/app
+      - beatemplate_static_data:/app/staticfiles
 
-environment:
+    env_file:
+      - .env
 
-- POSTGRES_DB=${POSTGRES_DB_BLOG}
+    environment:
+      - DJANGO_SETTINGS_MODULE=trabajo_it.settings.prod
 
-- POSTGRES_USER=${POSTGRES_USER_BLOG}
+    depends_on:
+      db-beatemplate:
+        condition: service_healthy
 
-- POSTGRES_PASSWORD=${POSTGRES_PASSWORD_BLOG}
+  # ==========================================
+  # BLOQUE 2: PROYECTO RESTEMPLATE (API)
+  # ==========================================
 
-- PGDATA=/var/lib/postgresql/data/pgdata
+  db-restemplate:
+    image: postgres:18
 
-# Comprueba si la BD acepta conexiones
+    restart: always
 
-healthcheck:
+    volumes:
+      - restemplate_postgres_data:/var/lib/postgresql/data
 
-test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER_BLOG} -d ${POSTGRES_DB_BLOG}"]
+    env_file:
+      - .env
 
-interval: 5s
+    environment:
+      - POSTGRES_DB=${POSTGRES_DB_RESTEMPLATE}
+      - POSTGRES_USER=${POSTGRES_USER_RESTEMPLATE}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD_RESTEMPLATE}
+      - PGDATA=/var/lib/postgresql/data/pgdata
 
-timeout: 5s
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER_RESTEMPLATE} -d ${POSTGRES_DB_RESTEMPLATE}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
 
-retries: 5
+  web-api:
+    build: ./TrabajoAPIDjangoIT
 
-web-blog:
+    command: >
+      sh -c "python manage.py collectstatic --noinput &&
+      python manage.py migrate &&
+      gunicorn api_trabajo_it.wsgi:application --bind 0.0.0.0:8001"
 
-build: ./MiPrimerProyectoDjango
+    volumes:
+      - ./TrabajoAPIDjangoIT:/app
+      - restemplate_static_data:/app/staticfiles
 
-# Primero migra, si tiene éxito (&&), levanta Gunicorn
+    env_file:
+      - .env
 
-command: >
+    environment:
+      - DJANGO_SETTINGS_MODULE=api_trabajo_it.settings.prod
 
-sh -c "python manage.py collectstatic --noinput &&
+    depends_on:
+      db-restemplate:
+        condition: service_healthy
 
-python manage.py migrate &&
+  # ==========================================
+  # BLOQUE 3: SERVIDOR WEB FRONT-END (NGINX)
+  # ==========================================
 
-gunicorn mi_primer_proyecto_django.wsgi:application --bind 0.0.0.0:8000"
+  nginx:
+    image: nginx:alpine
 
-volumes:
+    restart: always
 
-- ./MiPrimerProyectoDjango:/app
+    ports:
+      - "8000:8000"
+      - "8001:8001"
 
-- blog_static_data:/app/staticfiles
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - beatemplate_static_data:/staticfiles_beatemplate
+      - restemplate_static_data:/staticfiles_restemplate
 
-env_file:
-
-- .env
-
-environment:
-
-- DJANGO_SETTINGS_MODULE=mi_primer_proyecto_django.settings.prod
-
-depends_on:
-
-db-blog:
-
-condition: service_healthy # No arranca hasta que db-blog esté "sana"
-
-# ==========================================
-
-# BLOQUE 2: PROYECTO API (BIBLIOTECA)
-
-# ==========================================
-
-db-api:
-
-image: postgres:18
-
-restart: always
-
-volumes:
-
-- api_postgres_data:/var/lib/postgresql/data
-
-env_file:
-
-- .env
-
-environment:
-
-- POSTGRES_DB=${POSTGRES_DB_API}
-
-- POSTGRES_USER=${POSTGRES_USER_API}
-
-- POSTGRES_PASSWORD=${POSTGRES_PASSWORD_API}
-
-- PGDATA=/var/lib/postgresql/data/pgdata
-
-healthcheck:
-
-test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER_API} -d ${POSTGRES_DB_API}"]
-
-interval: 5s
-
-timeout: 5s
-
-retries: 5
-
-web-api:
-
-build: ./MiPrimeraAPI
-
-command: >
-
-sh -c "python manage.py collectstatic --noinput &&
-
-python manage.py migrate &&
-
-gunicorn mi_primera_api.wsgi:application --bind 0.0.0.0:8001"
+    depends_on:
+      - web-beatemplate
+      - web-api
 
 volumes:
-
-- ./MiPrimeraAPI:/app
-
-- api_static_data:/app/staticfiles
-
-env_file:
-
-- .env
-
-environment:
-
-- DJANGO_SETTINGS_MODULE=mi_primera_api.settings.prod
-
-depends_on:
-
-db-api:
-
-condition: service_healthy
-
-# ==========================================
-
-# BLOQUE 3: SERVIDOR WEB FRONT-END (NGINX)
-
-# ==========================================
-
-nginx:
-
-image: nginx:alpine
-
-restart: always
-
-ports:
-
-- "8000:8000"
-
-- "8001:8001"
-
-volumes:
-
-- ./nginx/default.conf:/etc/nginx/conf.d/default.conf
-
-- blog_static_data:/staticfiles_blog
-
-- api_static_data:/staticfiles_api
-
-depends_on:
-
-- web-blog
-
-- web-api
-
-volumes:
-
-blog_postgres_data:
-
-api_postgres_data:
-
-blog_static_data:
-
-api_static_data:
+  beatemplate_postgres_data:
+  restemplate_postgres_data:
+  beatemplate_static_data:
+  restemplate_static_data:

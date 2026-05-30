@@ -8,8 +8,8 @@ WORKDIR /app
 
 COPY requirements.txt manage.py /app/
 
-COPY mi_primer_proyecto_django /app/mi_primer_proyecto_django
+COPY trabajo_it /app/trabajo_it
 
-COPY blog /app/blog
+COPY beatemplate /app/beatemplate
 
 RUN pip install --upgrade pip && pip install -r requirements.txt
