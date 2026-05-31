@@ -135,7 +135,7 @@ class ReleaseSong(models.Model):
                              related_name = 'song_releases')
     
     track_number = models.PositiveIntegerField()
-    disc_title = models.CharField( max_length = 256, default = None, null = True )
+    disc_title = models.CharField( max_length = 256, blank = True, default = '' )
 
     class Meta:
         verbose_name = 'Canción'

@@ -9,6 +9,14 @@ class ReleaseSongInline(admin.TabularInline):
     extra = 1
     min_num = 1
 
+    def get_formset(self, request, obj=None, **kwargs):
+        formset = super().get_formset(request, obj, **kwargs)
+
+        form = formset.form
+        form.base_fields["disc_title"].required = False
+
+        return formset
+
 @admin.register(Artist)
 class ArtistAdmin(admin.ModelAdmin):
     list_display = ['artist_name', 'artist_slug']

@@ -16,12 +16,11 @@
         {% endif %}
     </div>
 
-    <!-- Sección Últimos Álbumes -->
     <h4 class="mb-3 text-success border-bottom border-secondary pb-2"><i class="bi bi-journal-album me-2"></i>Últimos Álbumes</h4>
-    <div class="row mb-5">
+    <div class="row mb-3">
         {% for album in published_albums %}
         <div class="col-md-3 mb-4">
-            <div class="card h-100 text-center p-3 shadow-sm bg-dark border-secondary">
+            <div class="card h-100 text-center p-3 shadow-sm bg-dark border-secondary d-flex flex-column">
                 <i class="bi bi-disc display-1 text-secondary mb-3"></i>
                 <h5 class="card-title text-truncate">
                     <a href="{% url 'beatemplate:detailed_release' album.id album.release_slug %}" class="text-white stretched-link text-decoration-none">{{ album.release_title }}</a>
@@ -31,9 +30,9 @@
                         {{ artist.artist_name }}{% if not forloop.last %}, {% endif %}
                     {% endfor %}
                 </p>
-                <div>
+                <div class="mt-auto pt-2">
                     {% for tag in album.get_tags %}
-                        <span class="badge bg-secondary fw-normal">#{{ tag.name }}</span>
+                        <a href="{% url 'beatemplate:tag_search' tag.slug %}" class="badge bg-secondary fw-normal text-decoration-none position-relative z-2">#{{ tag.name }}</a>
                     {% endfor %}
                 </div>
             </div>
@@ -42,13 +41,24 @@
             <p class="text-muted">No hay álbumes publicados recientemente.</p>
         {% endfor %}
     </div>
+    
+    <nav class="mb-5">
+        <ul class="pagination pagination-sm justify-content-center">
+            {% if published_albums.has_previous %}
+                <li class="page-item"><a class="page-link bg-dark text-success border-secondary" href="?page_albumes={{ published_albums.previous_page_number }}&page_singles={{ published_singles.number }}&page_anunciados={{ announced_releases.number }}&page_playlists={{ playlists.number }}&page_artistas={{ artists.number }}">Anterior</a></li>
+            {% endif %}
+            <li class="page-item disabled"><span class="page-link bg-dark text-white border-secondary">Álbumes: {{ published_albums.number }} de {{ published_albums.paginator.num_pages }}</span></li>
+            {% if published_albums.has_next %}
+                <li class="page-item"><a class="page-link bg-dark text-success border-secondary" href="?page_albumes={{ published_albums.next_page_number }}&page_singles={{ published_singles.number }}&page_anunciados={{ announced_releases.number }}&page_playlists={{ playlists.number }}&page_artistas={{ artists.number }}">Siguiente</a></li>
+            {% endif %}
+        </ul>
+    </nav>
 
-    <!-- Sección Últimos Singles -->
     <h4 class="mb-3 text-success border-bottom border-secondary pb-2"><i class="bi bi-music-note me-2"></i>Últimos Singles</h4>
-    <div class="row mb-5">
+    <div class="row mb-3">
         {% for single in published_singles %}
         <div class="col-md-3 mb-4">
-            <div class="card h-100 text-center p-3 shadow-sm bg-dark border-secondary">
+            <div class="card h-100 text-center p-3 shadow-sm bg-dark border-secondary d-flex flex-column">
                 <i class="bi bi-vinyl display-1 text-secondary mb-3"></i>
                 <h5 class="card-title text-truncate">
                     <a href="{% url 'beatemplate:detailed_release' single.id single.release_slug %}" class="text-white stretched-link text-decoration-none">{{ single.release_title }}</a>
@@ -58,9 +68,9 @@
                         {{ artist.artist_name }}{% if not forloop.last %}, {% endif %}
                     {% endfor %}
                 </p>
-                <div>
+                <div class="mt-auto pt-2">
                     {% for tag in single.get_tags %}
-                        <span class="badge bg-secondary fw-normal">#{{ tag.name }}</span>
+                        <a href="{% url 'beatemplate:tag_search' tag.slug %}" class="badge bg-secondary fw-normal text-decoration-none position-relative z-2">#{{ tag.name }}</a>
                     {% endfor %}
                 </div>
             </div>
@@ -70,12 +80,23 @@
         {% endfor %}
     </div>
 
-    <!-- Sección Lanzamientos Anunciados -->
+    <nav class="mb-5">
+        <ul class="pagination pagination-sm justify-content-center">
+            {% if published_singles.has_previous %}
+                <li class="page-item"><a class="page-link bg-dark text-success border-secondary" href="?page_singles={{ published_singles.previous_page_number }}&page_albumes={{ published_albums.number }}&page_anunciados={{ announced_releases.number }}&page_playlists={{ playlists.number }}&page_artistas={{ artists.number }}">Anterior</a></li>
+            {% endif %}
+            <li class="page-item disabled"><span class="page-link bg-dark text-white border-secondary">Singles: {{ published_singles.number }} de {{ published_singles.paginator.num_pages }}</span></li>
+            {% if published_singles.has_next %}
+                <li class="page-item"><a class="page-link bg-dark text-success border-secondary" href="?page_singles={{ published_singles.next_page_number }}&page_albumes={{ published_albums.number }}&page_anunciados={{ announced_releases.number }}&page_playlists={{ playlists.number }}&page_artistas={{ artists.number }}">Siguiente</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+
     <h4 class="mb-3 text-success border-bottom border-secondary pb-2"><i class="bi bi-calendar-event me-2"></i>Lanzamientos Anunciados</h4>
-    <div class="row mb-5">
+    <div class="row mb-3">
         {% for announcement in announced_releases %}
         <div class="col-md-3 mb-4">
-            <div class="card h-100 text-center p-3 shadow-sm bg-dark border-warning">
+            <div class="card h-100 text-center p-3 shadow-sm bg-dark border-warning d-flex flex-column">
                 <i class="bi bi-clock-history display-1 text-warning mb-3"></i>
                 <h5 class="card-title text-truncate">
                     <a href="{% url 'beatemplate:detailed_release' announcement.id announcement.release_slug %}" class="text-white stretched-link text-decoration-none">{{ announcement.release_title }}</a>
@@ -85,9 +106,9 @@
                         {{ artist.artist_name }}{% if not forloop.last %}, {% endif %}
                     {% endfor %}
                 </p>
-                <div>
+                <div class="mt-auto pt-2">
                     {% for tag in announcement.get_tags %}
-                        <span class="badge bg-secondary fw-normal">#{{ tag.name }}</span>
+                        <a href="{% url 'beatemplate:tag_search' tag.slug %}" class="badge bg-secondary fw-normal text-decoration-none position-relative z-2">#{{ tag.name }}</a>
                     {% endfor %}
                 </div>
             </div>
@@ -97,9 +118,20 @@
         {% endfor %}
     </div>
 
-    <!-- Sección Playlists (Paginadas) -->
+    <nav class="mb-5">
+        <ul class="pagination pagination-sm justify-content-center">
+            {% if announced_releases.has_previous %}
+                <li class="page-item"><a class="page-link bg-dark text-success border-secondary" href="?page_anunciados={{ announced_releases.previous_page_number }}&page_albumes={{ published_albums.number }}&page_singles={{ published_singles.number }}&page_playlists={{ playlists.number }}&page_artistas={{ artists.number }}">Anterior</a></li>
+            {% endif %}
+            <li class="page-item disabled"><span class="page-link bg-dark text-white border-secondary">Próximos: {{ announced_releases.number }} de {{ announced_releases.paginator.num_pages }}</span></li>
+            {% if announced_releases.has_next %}
+                <li class="page-item"><a class="page-link bg-dark text-success border-secondary" href="?page_anunciados={{ announced_releases.next_page_number }}&page_albumes={{ published_albums.number }}&page_singles={{ published_singles.number }}&page_playlists={{ playlists.number }}&page_artistas={{ artists.number }}">Siguiente</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+
     <h4 class="mb-3 text-success border-bottom border-secondary pb-2"><i class="bi bi-collection-play me-2"></i>Explorar Playlists</h4>
-    <div class="row">
+    <div class="row mb-3">
         {% for playlist in playlists %}
         <div class="col-md-3 mb-4">
             <div class="card h-100 p-3 border-0 shadow-sm" style="background-color: #181818;">
@@ -117,22 +149,20 @@
         {% endfor %}
     </div>
 
-    <!-- Controles Paginación Playlists -->
     <nav class="mb-5">
         <ul class="pagination pagination-sm justify-content-center">
             {% if playlists.has_previous %}
-                <li class="page-item"><a class="page-link bg-dark text-success border-secondary" href="?page_playlists={{ playlists.previous_page_number }}&page_artistas={{ artists.number }}">Anterior</a></li>
+                <li class="page-item"><a class="page-link bg-dark text-success border-secondary" href="?page_playlists={{ playlists.previous_page_number }}&page_albumes={{ published_albums.number }}&page_singles={{ published_singles.number }}&page_anunciados={{ announced_releases.number }}&page_artistas={{ artists.number }}">Anterior</a></li>
             {% endif %}
             <li class="page-item disabled"><span class="page-link bg-dark text-white border-secondary">Playlists: {{ playlists.number }} de {{ playlists.paginator.num_pages }}</span></li>
             {% if playlists.has_next %}
-                <li class="page-item"><a class="page-link bg-dark text-success border-secondary" href="?page_playlists={{ playlists.next_page_number }}&page_artistas={{ artists.number }}">Siguiente</a></li>
+                <li class="page-item"><a class="page-link bg-dark text-success border-secondary" href="?page_playlists={{ playlists.next_page_number }}&page_albumes={{ published_albums.number }}&page_singles={{ published_singles.number }}&page_anunciados={{ announced_releases.number }}&page_artistas={{ artists.number }}">Siguiente</a></li>
             {% endif %}
         </ul>
     </nav>
 
-    <!-- Sección Artistas (Paginados) -->
     <h4 class="mb-3 text-success border-bottom border-secondary pb-2"><i class="bi bi-person-lines-fill me-2"></i>Mejores Artistas</h4>
-    <div class="row">
+    <div class="row mb-3">
         {% for artist in artists %}
         <div class="col-md-4 col-sm-6 mb-4">
             <div class="card bg-dark border-secondary h-100 text-center shadow-sm">
@@ -144,20 +174,20 @@
                 </div>
             </div>
         </div>
+        {% empty %}
+            <p class="text-muted">No hay artistas registrados.</p>
         {% endfor %}
     </div>
 
-    <!-- Controles Paginación Artistas -->
     <nav class="mb-4">
         <ul class="pagination pagination-sm justify-content-center">
             {% if artists.has_previous %}
-                <li class="page-item"><a class="page-link bg-dark text-success border-secondary" href="?page_artistas={{ artists.previous_page_number }}&page_playlists={{ playlists.number }}">Anterior</a></li>
+                <li class="page-item"><a class="page-link bg-dark text-success border-secondary" href="?page_artistas={{ artists.previous_page_number }}&page_albumes={{ published_albums.number }}&page_singles={{ published_singles.number }}&page_anunciados={{ announced_releases.number }}&page_playlists={{ playlists.number }}">Anterior</a></li>
             {% endif %}
             <li class="page-item disabled"><span class="page-link bg-dark text-white border-secondary">Artistas: {{ artists.number }} de {{ artists.paginator.num_pages }}</span></li>
             {% if artists.has_next %}
-                <li class="page-item"><a class="page-link bg-dark text-success border-secondary" href="?page_artistas={{ artists.next_page_number }}&page_playlists={{ playlists.number }}">Siguiente</a></li>
+                <li class="page-item"><a class="page-link bg-dark text-success border-secondary" href="?page_artistas={{ artists.next_page_number }}&page_albumes={{ published_albums.number }}&page_singles={{ published_singles.number }}&page_anunciados={{ announced_releases.number }}&page_playlists={{ playlists.number }}">Siguiente</a></li>
             {% endif %}
         </ul>
     </nav>
 {% endblock %}
-

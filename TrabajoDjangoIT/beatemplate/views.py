@@ -45,29 +45,44 @@ def register(request):
     return render(request, 'beatemplate/users/register.html', {'register_form': register_form})
 
 def feed(request):
+    # 1. Paginación de Álbumes (4 por página)
+    albumes_lista = Release.objects.get_published_albums()
+    paginator_albumes = Paginator(albumes_lista, 4)
+    page_albumes = request.GET.get('page_albumes')
+    albumes_paginados = paginator_albumes.get_page(page_albumes)
 
-    artistas_lista = Artist.objects.all()
-    paginator_artistas = Paginator(artistas_lista, 6) 
-    page_artistas = request.GET.get('page_artistas')
-    artists_paginados = paginator_artistas.get_page(page_artistas)
+    # 2. Paginación de Singles (4 por página)
+    singles_lista = Release.objects.get_published_singles()
+    paginator_singles = Paginator(singles_lista, 4)
+    page_singles = request.GET.get('page_singles')
+    singles_paginados = paginator_singles.get_page(page_singles)
 
+    # 3. Paginación de Lanzamientos Anunciados (4 por página)
+    anunciados_lista = Release.objects.get_announced_releases()
+    paginator_anunciados = Paginator(anunciados_lista, 4)
+    page_anunciados = request.GET.get('page_anunciados')
+    anunciados_paginados = paginator_anunciados.get_page(page_anunciados)
+
+    # 4. Paginación de Playlists (4 por página)
     playlists_lista = Playlist.objects.all()
     paginator_playlists = Paginator(playlists_lista, 4)
     page_playlists = request.GET.get('page_playlists')
     playlists_paginadas = paginator_playlists.get_page(page_playlists)
 
-    published_albums = Release.objects.get_published_albums()[:4] 
-    published_singles = Release.objects.get_published_singles()[:4]
-    announced_releases = Release.objects.get_announced_releases()[:4]
-    
+    # 5. Paginación de Artistas (6 por página)
+    artistas_lista = Artist.objects.all()
+    paginator_artistas = Paginator(artistas_lista, 6) 
+    page_artistas = request.GET.get('page_artistas')
+    artists_paginados = paginator_artistas.get_page(page_artistas)
+
     group = {
-             'artists' : artists_paginados,
+             'published_albums' : albumes_paginados,
+             'published_singles' : singles_paginados,
+             'announced_releases' : anunciados_paginados,
              'playlists' : playlists_paginadas,
-             'published_albums' : published_albums,
-             'published_singles' : published_singles,
-             'announced_releases' : announced_releases
+             'artists' : artists_paginados,
             }
-    
+
     return render(request, 'beatemplate/feed.html', group)
 
 def detailed_artist(request, id, slug):
