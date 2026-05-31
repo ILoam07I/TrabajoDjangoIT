@@ -14,8 +14,8 @@ from django_tomselect.autocompletes import AutocompleteModelView
 from .models import Artist, Release, Playlist, Song
 from .forms import RegisterForm, CreatePlaylistForm, RatingForm
 
-API_URL = os.getenv('API_URL')
-API_CREDS = {'username': os.getenv('API_USER'), 'password': os.getenv('API_PASSWORD')}
+API_URL = os.getenv('API_URL', 'http://web-api:8001/api')
+API_CREDS = {'username': os.getenv('API_USER', 'grupo7'), 'password': os.getenv('API_PASSWORD', 'grupo7')}
 
 class SongAutocompleteView(AutocompleteModelView):
     model = Song
@@ -174,12 +174,16 @@ def obtain_api_token():
 def detailed_song(request, id, slug):
     song = get_object_or_404(Song, id = id, song_slug = slug)
     token = obtain_api_token()
+    rating_stats = {'mean_score': 0, 'total_ratings': 0}
+    user_rating = None
+    rating_form = RatingForm()
+    
 
     if token:
         headers = {'Authorization': f'Bearer {token}'}
 
         try:
-            response = requests.get(f'http://127.0.0.1:8001/api/ratings/song/{song.id}/', headers = headers)
+            response = requests.get(f'{API_URL}/ratings/song/{song.id}/', headers = headers)
 
             if response.status_code == 200:
                 rating_stats = response.json()
@@ -191,7 +195,7 @@ def detailed_song(request, id, slug):
             rating_stats = {'mean_score': 0, 'total_ratings': 0}
 
         try:
-            response = requests.get(f'http://127.0.0.1:8001/api/ratings/song/{song.id}/user/{request.user.id}/', headers = headers)
+            response = requests.get(f'{API_URL}/ratings/song/{song.id}/user/{request.user.id}/', headers = headers)
 
             if response.status_code == 200:
                 user_rating = response.json()
@@ -213,9 +217,9 @@ def detailed_song(request, id, slug):
 
                 if user_rating:
                     rating_id = user_rating.get('id')
-                    response = requests.put(f'http://127.0.0.1:8001/api/ratings/{rating_id}/', json=payload, headers=headers)
+                    response = requests.put(f'{API_URL}/ratings/{rating_id}/', json=payload, headers=headers)
                 else:
-                    response = requests.post('http://127.0.0.1:8001/api/ratings/', json=payload, headers=headers)
+                    response = requests.post(f'{API_URL}/ratings/', json=payload, headers=headers)
                 
                 if response.status_code in [200, 201]:
 
